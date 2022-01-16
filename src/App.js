@@ -5,6 +5,7 @@ import { faCoffee, faLaptopMedical } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import Header from './Header.js';
 import Landing from './Landing.js';
+import NutritionInfoBox from './NutritionInfoBox.js';
 // import Journal from './Journal.js';
 import axios from 'axios';
 
@@ -19,6 +20,8 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("Pasta");
   const [searchResults, setSearchResults] = useState([]);
   const [nutritionLabel, setNutritionLabel] = useState("");
+  const [nutritionInfo, setNutritionInfo] = useState("");
+  
 
 
   useEffect( () => {
@@ -40,15 +43,34 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setSearchTerm(userInput);
+    setUserInput("");
+    
   }
 
   const handleInput = (event) => {
-    console.log(event.target.value)
+    console.log(event.target.value);
     setUserInput(event.target.value);
+    
   }
 
   const handleClick = (id) => {
     setNutritionLabel(`https://api.spoonacular.com/food/products/${id}/nutritionLabel.png?apiKey=${apiKey}`)
+    getNutritionInfo(id);
+  }
+
+  const getNutritionInfo = (id) => {
+    axios({
+      url: `https://api.spoonacular.com/food/products/${id}`,
+      method: 'GET',
+      dataREsponse: 'json',
+      params: {
+        apiKey: apiKey,
+
+      }
+    }).then((response) => {
+      setNutritionInfo(response.data);
+      console.log(response.data);
+    })
   }
   return (
     <div className="App">
@@ -72,8 +94,8 @@ function App() {
             <div className="recipes">
             { 
               searchResults[0] === undefined
-              ? null
-                  : searchResults[0].results.slice(0, 3).map((recipe)=>{
+              ? <p> please start search</p>
+              : searchResults[0].results.slice(0, 3).map((recipe)=>{
                 return(
                   <div key={recipe.id}>
                     <p>{recipe.name}</p>
@@ -88,22 +110,31 @@ function App() {
             <div className="products">
             {searchResults[1] === undefined
               ? null
-              :searchResults[1].results.map((product)=>{
+              :searchResults[1].results.slice(0, 7).map((product)=>{
                 return (
                   <div key={product.id}>
                     <p>{product.name}</p>
                     <img className="productImg" src={product.image} alt={product.name}/>
                     <button onClick={ () => {handleClick(product.id)}}>Add to Journal</button>
                   </div>
-
                 )
               })  
             }
             </div>
+            {nutritionInfo.nutrition === undefined
+              ? null
+              : <NutritionInfoBox
+                title={nutritionInfo.title}
+                fat={nutritionInfo.nutrition.fat}
+                carbs={nutritionInfo.nutrition.carbs}
+                calories={nutritionInfo.nutrition.calories}
+                protein={nutritionInfo.nutrition.protein} />
+            }
           </div>
+
         </div>
         <div className="toolDiv">
-          <img src={nutritionLabel}/>
+          <img src={nutritionLabel} alt="nutrition label" className="nutritionLabel"/>
         </div>
         
 

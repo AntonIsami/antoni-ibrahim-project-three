@@ -293,11 +293,36 @@ nav ul li a {
 }
 
 .recipeImg {
-  height: 100px;
+  height: 75px;
 }
 
 .productImg {
-  height: 150px;
+  height: 100px;
+}
+
+.nutritionLabel {
+  height: 300px;
+}
+
+.productDisplay {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 10% 10% 10%;
+}
+
+.productDescription {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.recipes, .products, .productDisplay {
+  width: 32%;
+}
+
+.nutritionCategory {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 @media (prefers-reduced-motion: no-preference) {
