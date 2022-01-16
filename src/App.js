@@ -16,9 +16,12 @@ function App() {
   const apiKey = "5306a0f7f32242acaec3f5e05a575696";
   const [loggedIn, setLoggedIn] = useState(false);
   const [userInput, setUserInput] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
-  
-  useEffect(()=>{ 
+  const [searchTerm, setSearchTerm] = useState("Pasta");
+  const [searchResults, setSearchResults] = useState([]);
+  const [nutrition, setNutrition] = useState("");
+
+
+  useEffect( () => {
     axios({
       url: 'https://api.spoonacular.com/food/search',
       method: 'GET',
@@ -28,10 +31,11 @@ function App() {
         query: searchTerm
       }
     }).then((response) => {
-      console.log(response.data.searchResults);
-    });
-}, [searchTerm]);
+      setSearchResults(response.data.searchResults);
+    })
+  }, [searchTerm])
 
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,6 +45,19 @@ function App() {
   const handleInput = (event) => {
     console.log(event.target.value)
     setUserInput(event.target.value);
+  }
+
+  const handleClick = (id) => {
+    axios({
+      url: `https://api.spoonacular.com/food/products/${id}/nutritionLabel`,
+      method: 'GET',
+      dataResponse: 'json',
+      params: {
+        apiKey: apiKey
+      }
+    }).then((response) => {
+       setNutrition(response.data)
+    })
   }
   return (
     <div className="App">
@@ -58,10 +75,42 @@ function App() {
         <div className="formDiv">
           <form onSubmit={ handleSubmit }>
             <label htmlFor="search" className="sr-only">Product &amp; Recipe Search</label>
-            <input type="text" id="search" onChange={handleInput} value={userInput} ></input>
+            <input type="text" id="search" onChange={ handleInput } value={userInput} ></input>
           </form>
+          <div className="searchResultsDiv">
+            
+            {
+              searchResults[0] === undefined
+              ? null
+              :searchResults[0].results.map((recipe)=>{
+                return(
+                  <div key={recipe.id}>
+                    <p>{recipe.name}</p>
+                    <p><a href={recipe.link}>Recipe Link</a></p>
+                    <img src={recipe.image} alt={recipe.name}/>
+                  </div>
+                )
+              })
+            }
+            {searchResults[1] === undefined
+              ? null
+              :searchResults[1].results.map((product)=>{
+                return (
+                  <div key={product.id}>
+                    <p>{product.name}</p>
+                    <img src={product.image} alt={product.name}/>
+                    <button onClick={ () => {handleClick(product.id)}}>Add to Journal</button>
+                  </div>
+
+                )
+              })  
+            }
+          </div>
         </div>
-        <div className="resultsDiv"></div>
+        <div className="toolDiv">
+         
+        </div>
+        
 
       </section>
     </div>
