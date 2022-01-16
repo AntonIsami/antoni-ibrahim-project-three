@@ -61,7 +61,16 @@ nav ul li a {
 .fire {
   color: gold;
 }
+.searchResultsDiv {
+  display: flex;
 
+}
+.recipeImg {
+  height: 100px;
+}
+.productImg {
+  height: 150px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .logoIcon {
     animation: App-logo-spin 3 5s linear;

@@ -18,7 +18,7 @@ function App() {
   const [userInput, setUserInput] = useState("");
   const [searchTerm, setSearchTerm] = useState("Pasta");
   const [searchResults, setSearchResults] = useState([]);
-  const [nutrition, setNutrition] = useState("");
+  const [nutritionLabel, setNutritionLabel] = useState("");
 
 
   useEffect( () => {
@@ -48,16 +48,7 @@ function App() {
   }
 
   const handleClick = (id) => {
-    axios({
-      url: `https://api.spoonacular.com/food/products/${id}/nutritionLabel`,
-      method: 'GET',
-      dataResponse: 'json',
-      params: {
-        apiKey: apiKey
-      }
-    }).then((response) => {
-       setNutrition(response.data)
-    })
+    setNutritionLabel(`https://api.spoonacular.com/food/products/${id}/nutritionLabel.png?apiKey=${apiKey}`)
   }
   return (
     <div className="App">
@@ -78,37 +69,41 @@ function App() {
             <input type="text" id="search" onChange={ handleInput } value={userInput} ></input>
           </form>
           <div className="searchResultsDiv">
-            
-            {
+            <div className="recipes">
+            { 
               searchResults[0] === undefined
               ? null
-              :searchResults[0].results.map((recipe)=>{
+                  : searchResults[0].results.slice(0, 3).map((recipe)=>{
                 return(
                   <div key={recipe.id}>
                     <p>{recipe.name}</p>
                     <p><a href={recipe.link}>Recipe Link</a></p>
-                    <img src={recipe.image} alt={recipe.name}/>
+                    <img className="recipeImg" src={recipe.image} alt={recipe.name}/>
                   </div>
                 )
               })
+            
             }
+            </div>
+            <div className="products">
             {searchResults[1] === undefined
               ? null
               :searchResults[1].results.map((product)=>{
                 return (
                   <div key={product.id}>
                     <p>{product.name}</p>
-                    <img src={product.image} alt={product.name}/>
+                    <img className="productImg" src={product.image} alt={product.name}/>
                     <button onClick={ () => {handleClick(product.id)}}>Add to Journal</button>
                   </div>
 
                 )
               })  
             }
+            </div>
           </div>
         </div>
         <div className="toolDiv">
-         
+          <img src={nutritionLabel}/>
         </div>
         
 
