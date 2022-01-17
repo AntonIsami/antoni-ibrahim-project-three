@@ -22,8 +22,6 @@ function App() {
   const [nutritionLabel, setNutritionLabel] = useState("");
   const [nutritionInfo, setNutritionInfo] = useState("");
   
-
-
   useEffect( () => {
     axios({
       url: 'https://api.spoonacular.com/food/search',
@@ -128,13 +126,15 @@ function App() {
                 fat={nutritionInfo.nutrition.fat}
                 carbs={nutritionInfo.nutrition.carbs}
                 calories={nutritionInfo.nutrition.calories}
-                protein={nutritionInfo.nutrition.protein} />
+                protein={nutritionInfo.nutrition.protein}
+                image={nutritionInfo.images[0]}
+                label={nutritionLabel} />
             }
           </div>
 
         </div>
         <div className="toolDiv">
-          <img src={nutritionLabel} alt="nutrition label" className="nutritionLabel"/>
+         
         </div>
         
 

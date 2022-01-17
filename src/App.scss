@@ -73,16 +73,22 @@ nav ul li a {
 }
 .nutritionLabel {
   height: 300px;
+  grid-column-start: 2;
+  grid-column-end: 4;
 }
+
 
 .productDisplay {
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 10% 10% 10%;
+  grid-template-rows: 20% 10% 10%;
 }
 .productDescription {
   grid-column-start: 1;
   grid-column-end: 4;
+}
+.productDescriptionImg {
+  margin: 10px 10px;
 }
 .recipes, .products, .productDisplay {
   width: 32%;
