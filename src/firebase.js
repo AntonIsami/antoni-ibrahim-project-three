@@ -26,6 +26,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 
-const app = initializeApp(firebaseConfig);
+const NutritionDatabase = initializeApp(firebaseConfig);
 
-export default firebase
+export default NutritionDatabase;

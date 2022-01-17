@@ -1,9 +1,18 @@
-
+import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
+import NutritionDatabase from './firebase.js';
 
 const NutritionInfoBox = (props) => {
+
+    const addItemToDiary = (productObject) => {
+        const database = getDatabase(NutritionDatabase);
+        const dbRootAddress = ref(database);
+
+
+        push(dbRootAddress, productObject);
+    }
     return (
         <div className="productDisplay">
-            <div className="productDescription">
+            <div className="productDescription" key={props.id}>
                 <h3>Nutritional Info:</h3>
                 <h4>{props.title}</h4>
                 <h5>Nutritional info is per serving</h5>
@@ -18,35 +27,39 @@ const NutritionInfoBox = (props) => {
             <div className="carbs nutritionCategory">
                 <p>Carbs:</p> <p>{props.carbs}</p>
             </div>
-
-            <div className="sugar nutritionCategory">
+            
+            {/* { props.sugar === undefined
+            ? null
+            : <div className="sugar nutritionCategory">
                 <p>Sugar:</p> <p>{props.sugar} g</p>
             </div>
+            } */}
+            
 
             <div className="fat nutritionCategory">
                 <p>Fat:</p> <p>{props.fat}</p>
             </div>
 
-            <div className="transFats nutritionCategory">
+            {/* <div className="transFats nutritionCategory">
                 <p>Transfats:</p> <p>{props.transFats} %</p>
             </div>
 
             <div className="saturatedFats nutritionCategory">
                 <p>Saturated fats:</p> <p>{props.saturatedFats}%</p>
             </div>
-        
-            <div className="sodium nutritionCategory">
+         */}
+            {/* <div className="sodium nutritionCategory">
                 <p>Sodium:</p> <p>{props.sodium} g</p>
-            </div>
+            </div> */}
 
             <div className="protein nutritionCategory">
                 <p>Protein:</p> <p>{props.protein}</p>
             </div>
 
-            <div className="fibre nutritionCategory">
+            {/* <div className="fibre nutritionCategory">
                 <p>Fibre:</p> <p>{props.fibre} g</p>
-            </div>
-
+            </div> */}
+            <button onClick={()=>{addItemToDiary(props)}}>Add 1 Serving to Diary</button>
             <img src={props.label} alt="nutrition label" className="nutritionLabel" />
         </div>
     )
