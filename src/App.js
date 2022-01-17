@@ -9,6 +9,10 @@ import NutritionInfoBox from './NutritionInfoBox.js';
 // import Journal from './Journal.js';
 import axios from 'axios';
 
+import { getDatabase, ref, onValue } from 'firebase/database';
+import firebase from './firebase';
+
+
  
 library.add(faCoffee, faLaptopMedical);
 
@@ -21,6 +25,8 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [nutritionLabel, setNutritionLabel] = useState("");
   const [nutritionInfo, setNutritionInfo] = useState("");
+
+  const [books, setBooks] = useState([]);
   
   useEffect( () => {
     axios({
@@ -70,6 +76,26 @@ function App() {
       console.log(response.data);
     })
   }
+  const database = getDatabase(firebase);
+  const dbRef = ref(database);
+
+  onValue(dbRef, (response) => {
+    // here we're creating a variable to store the new state we want to introduce to our app
+    const newState = [];
+
+    // here we store the response from our query to Firebase inside of a variable called data.
+    // .val() is a Firebase method that gets us the information we want
+    const data = response.val();
+    // data is an object, so we iterate through it using a for in loop to access each book name 
+
+    for (let key in data) {
+      // inside the loop, we push each book name to an array we already created inside the onValue() function called newState
+      newState.push(data[key]);
+    }
+
+    // then, we call setBooks in order to update our component's state using the local array newState
+    setBooks(newState);
+  });
   return (
     <div className="App">
       <Header />
@@ -148,10 +174,21 @@ function App() {
       <div className="toolDiv">
         
       </div>
-        
+        <div>
+          <ul>
+            {books.map((book) => {
+              return (
+                <li>
+                  <p>{book}</p>
+                </li>
+              )
+            })}
+          </ul>
+        </div>  
 
       </section>
     </div>
+    
   );
 }
 
