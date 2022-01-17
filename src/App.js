@@ -88,54 +88,66 @@ function App() {
             <label htmlFor="search" className="sr-only">Product &amp; Recipe Search</label>
             <input type="text" id="search" onChange={ handleInput } value={userInput} ></input>
           </form>
-          <div className="searchResultsDiv">
-            <div className="recipes">
-            { 
-              searchResults[0] === undefined
-              ? <p> please start search</p>
-              : searchResults[0].results.slice(0, 3).map((recipe)=>{
-                return(
-                  <div key={recipe.id}>
-                    <p>{recipe.name}</p>
-                    <p><a href={recipe.link}>Recipe Link</a></p>
-                    <img className="recipeImg" src={recipe.image} alt={recipe.name}/>
-                  </div>
-                )
-              })
-            
-            }
-            </div>
-            <div className="products">
-            {searchResults[1] === undefined
-              ? null
-              :searchResults[1].results.slice(0, 7).map((product)=>{
-                return (
-                  <div key={product.id}>
-                    <p>{product.name}</p>
-                    <img className="productImg" src={product.image} alt={product.name}/>
-                    <button onClick={ () => {handleClick(product.id)}}>Add to Journal</button>
-                  </div>
-                )
-              })  
-            }
-            </div>
-            {nutritionInfo.nutrition === undefined
-              ? null
-              : <NutritionInfoBox
-                title={nutritionInfo.title}
-                fat={nutritionInfo.nutrition.fat}
-                carbs={nutritionInfo.nutrition.carbs}
-                calories={nutritionInfo.nutrition.calories}
-                protein={nutritionInfo.nutrition.protein}
-                image={nutritionInfo.images[0]}
-                label={nutritionLabel} />
-            }
+        </div>
+        <div className="searchResultsDiv">
+
+          <div className="recipes">
+            <h3>Recipes: </h3>
+          { 
+            searchResults[0] === undefined
+            ? <p> please start search</p>
+            : searchResults[0].results.slice(0, 3).map((recipe)=>{
+              return(
+                <div key={recipe.id}>
+                  <p>{recipe.name}</p>
+                  <p><a href={recipe.link}>Recipe Link</a></p>
+                  <img className="recipeImg" src={recipe.image} alt={recipe.name}/>
+                </div>
+              )
+            })
+          
+          }
           </div>
 
+          <div className="products">
+            <h3>Products: </h3> 
+          {searchResults[1] === undefined
+            ? null
+            :searchResults[1].results.slice(0, 7).map((product)=>{
+              return (
+                <div id="product" key={product.id}>
+                  <p>{product.name}</p>
+                  <img className="productImg" src={product.image} alt={product.name}/>
+                  <button onClick={ () => {handleClick(product.id)}}>View Nutritional Information</button>
+                </div>
+              )
+            })  
+          }
+          </div>
+            
+          {nutritionInfo.nutrition === undefined
+            ? null
+            : <NutritionInfoBox
+              title={nutritionInfo.title}
+              fat={nutritionInfo.nutrition.fat}
+              carbs={nutritionInfo.nutrition.carbs}
+              calories={nutritionInfo.nutrition.calories}
+              protein={nutritionInfo.nutrition.protein}
+              image={nutritionInfo.images[0]}
+              sugar={nutritionInfo.nutrition.nutrients[16].percentOfDailyNeeds}
+              transFats={nutritionInfo.nutrition.nutrients[6].amount}
+              saturatedFats={nutritionInfo.nutrition.nutrients[5].amount}
+              sodium={nutritionInfo.nutrition.nutrients[14].percentOfDailyNeeds}
+              fibre={nutritionInfo.nutrition.nutrients[7].amount}
+              label={nutritionLabel} />
+          }
         </div>
-        <div className="toolDiv">
-         
-        </div>
+        
+      
+
+      <div className="toolDiv">
+        
+      </div>
         
 
       </section>

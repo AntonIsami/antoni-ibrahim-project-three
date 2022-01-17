@@ -290,6 +290,9 @@ nav ul li a {
 
 .searchResultsDiv {
   display: flex;
+  background: white;
+  color: black;
+  padding: 15px 0;
 }
 
 .recipeImg {
@@ -302,14 +305,15 @@ nav ul li a {
 
 .nutritionLabel {
   height: 300px;
-  grid-column-start: 2;
+  grid-column-start: 1;
   grid-column-end: 4;
+  margin: 0 auto;
 }
 
 .productDisplay {
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 20% 10% 10%;
+  grid-template-rows: 20% 5% 5% 10%;
 }
 
 .productDescription {
@@ -323,6 +327,7 @@ nav ul li a {
 
 .recipes, .products, .productDisplay {
   width: 32%;
+  border-right: 2px solid black;
 }
 
 .nutritionCategory {
