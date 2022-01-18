@@ -74,7 +74,7 @@ function App() {
         amount: 1,
       }
     }).then((response) => {
-      setSimpleNutritionInfo(response.data);
+      // setSimpleNutritionInfo(response.data);
       console.log(response.data);
     })
   }
