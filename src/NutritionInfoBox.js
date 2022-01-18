@@ -4,11 +4,11 @@ import NutritionDatabase from './firebase.js';
 const NutritionInfoBox = (props) => {
 
     const addItemToDatabase = (productObject) => {
-        const database = getDatabase(NutritionDatabase);
-        const dbRootAddress = ref(database);
+        const database = getDatabase(NutritionDatabase)
+        const dbRootAddress = ref(database, 'Products')
 
 
-        push(dbRootAddress, productObject);
+        push(dbRootAddress, productObject.object);
 
     }
     const sugarPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sugar');
@@ -96,7 +96,7 @@ const NutritionInfoBox = (props) => {
             }
 
             
-            <button className="addDiaryBtn" onClick={()=>{addItemToDatabase(props)}}>Add 1 Serving to Diary</button>
+            <button className="addDiaryBtn" onClick={() => { addItemToDatabase(props, props.object.nutrition.nutrients[sodPos])}}>Add 1 Serving to Diary</button>
             <img src={props.label} alt="nutrition label" className="nutritionLabel" />
         </div>
     )

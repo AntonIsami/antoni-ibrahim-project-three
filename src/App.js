@@ -6,11 +6,12 @@ import { useState, useEffect } from 'react';
 import Header from './Header.js';
 import Landing from './Landing.js';
 import NutritionInfoBox from './NutritionInfoBox.js';
+import SimpleNutritionInfoBox from './SimpleNutritionInfoBox.js';
 // import Journal from './Journal.js';
 import axios from 'axios';
 
-// import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
-// import NutritionDatabase from './firebase.js';
+import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
+import NutritionDatabase from './firebase.js';
 
 
  
@@ -27,8 +28,8 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [nutritionLabel, setNutritionLabel] = useState("");
   const [nutritionInfo, setNutritionInfo] = useState("");
-  // const [simpleNutritionInfo, setSimpleNutritionInfo] = useState({});
-  // const [productNutrition, setProductNutrition] = useState({});
+  const [simpleNutritionInfo, setSimpleNutritionInfo] = useState({});
+  const [productNutrition, setProductNutrition] = useState({});
   
   useEffect( () => {
     axios({
@@ -74,7 +75,7 @@ function App() {
         amount: 1,
       }
     }).then((response) => {
-      // setSimpleNutritionInfo(response.data);
+      setSimpleNutritionInfo(response.data);
       console.log(response.data);
     })
   }
@@ -95,13 +96,13 @@ function App() {
 
   
   // in useEffect make a copy of the object so the api object is untouched
-  // useEffect(()=>{
-  //   const database = getDatabase(NutritionDatabase);
-  //   const dbRootAddress = ref(database);
+  useEffect(()=>{
+    const database = getDatabase(NutritionDatabase);
+    const dbRootAddress = ref(database);
 
-  //   push(dbRootAddress, productNutrition);
+    push(dbRootAddress, productNutrition);
     
-  // },[])
+  },[])
 
   
   // const database = getDatabase(firebaseProject);
@@ -198,6 +199,16 @@ function App() {
               // fibre={nutritionInfo.nutrition.nutrients[7].amount}
               label={nutritionLabel}
                />
+          }
+
+          {simpleNutritionInfo.nutrition === undefined
+            ? null
+            : <SimpleNutritionInfoBox 
+            id={simpleNutritionInfo.id}
+            object={simpleNutritionInfo}
+            name={simpleNutritionInfo.name}
+            image={simpleNutritionInfo.image}
+              />
           }
         </div>
         
