@@ -10,6 +10,14 @@ const NutritionInfoBox = (props) => {
 
         push(dbRootAddress, productObject);
     }
+    const sugarPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sugar');
+
+    const transPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Trans Fat');
+
+    const satPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Saturated Fat');
+
+    const sodPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sodium');
+    
     return (
         <div className="productDisplay">
             <div className="productDescription" key={props.id}>
@@ -27,27 +35,34 @@ const NutritionInfoBox = (props) => {
             <div className="carbs nutritionCategory">
                 <p>Carbs:</p> <p>{props.carbs}</p>
             </div>
-            
-            {/* { props.sugar === undefined
-            ? null
-            : <div className="sugar nutritionCategory">
-                <p>Sugar:</p> <p>{props.sugar} g</p>
-            </div>
-            } */}
-            
+
+            {
+                props.object.nutrition.nutrients[sugarPos] === undefined
+                ? null
+                :<div className="sugar nutritionCategory">
+                    <p>Sugar:</p> <p>{props.object.nutrition.nutrients[sugarPos].amount} g</p>
+                </div>
+            }
 
             <div className="fat nutritionCategory">
                 <p>Fat:</p> <p>{props.fat}</p>
             </div>
 
-            {/* <div className="transFats nutritionCategory">
-                <p>Transfats:</p> <p>{props.transFats} %</p>
-            </div>
+            {
+                props.object.nutrition.nutrients[transPos] === undefined
+                ? null
+                :<div className="transFats nutritionCategory">
+                        <p>Transfats:</p> <p>{props.object.nutrition.nutrients[transPos].amount} g</p>
+                </div>
+            }
 
-            <div className="saturatedFats nutritionCategory">
-                <p>Saturated fats:</p> <p>{props.saturatedFats}%</p>
-            </div>
-         */}
+            {
+                props.object.nutrition.nutrients[satPos] === undefined
+                ? null
+                :<div className="saturatedFats nutritionCategory">
+                        <p>Saturated fats:</p> <p>{props.object.nutrition.nutrients[satPos].amount} g</p>
+                </div>
+            }
             {/* <div className="sodium nutritionCategory">
                 <p>Sodium:</p> <p>{props.sodium} g</p>
             </div> */}
@@ -59,6 +74,10 @@ const NutritionInfoBox = (props) => {
             {/* <div className="fibre nutritionCategory">
                 <p>Fibre:</p> <p>{props.fibre} g</p>
             </div> */}
+
+            {
+            
+            }
             <button onClick={()=>{addItemToDiary(props)}}>Add 1 Serving to Diary</button>
             <img src={props.label} alt="nutrition label" className="nutritionLabel" />
         </div>

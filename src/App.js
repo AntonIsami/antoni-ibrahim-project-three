@@ -568,6 +568,7 @@ function App() {
             ? null
             : <NutritionInfoBox
               id={nutritionInfo.id}
+              object={nutritionInfo}
               title={nutritionInfo.title}
               fat={nutritionInfo.nutrition.fat}
               carbs={nutritionInfo.nutrition.carbs}
