@@ -18,14 +18,16 @@ library.add(faCoffee, faLaptopMedical);
 
 
 function App() {
-  const apiKey = "5306a0f7f32242acaec3f5e05a575696";
+  // const apiKey = "5306a0f7f32242acaec3f5e05a575696";
+  //bench API
+  const apiKey = "72e6c8349f5542e981ba7aaa8eb67e16";
   const [loggedIn, setLoggedIn] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [searchTerm, setSearchTerm] = useState("Pasta");
   const [searchResults, setSearchResults] = useState([]);
   const [nutritionLabel, setNutritionLabel] = useState("");
   const [nutritionInfo, setNutritionInfo] = useState("");
-
+  const [simpleNutritionInfo, setSimpleNutritionInfo] = useState({});
   const [productNutrition, setProductNutrition] = useState({});
   
   useEffect( () => {
@@ -62,18 +64,31 @@ function App() {
     getNutritionInfo(id);
   }
 
+  const handleClickSimple = (id) => {
+    axios({
+      url: `https://api.spoonacular.com/food/ingredients/${id}/information`,
+      method: 'GET',
+      dataResponse: 'json',
+      params: {
+        apiKey: apiKey,
+        amount: 1,
+      }
+    }).then((response) => {
+      setSimpleNutritionInfo(response.data);
+      console.log(response.data);
+    })
+  }
+
   const getNutritionInfo = (id) => {
     axios({
       url: `https://api.spoonacular.com/food/products/${id}`,
       method: 'GET',
-      dataREsponse: 'json',
+      dataResponse: 'json',
       params: {
-        apiKey: apiKey,
-
+        apiKey: apiKey
       }
     }).then((response) => {
       setNutritionInfo(response.data);
-
       console.log(response.data);
     })
   }
@@ -530,17 +545,17 @@ function App() {
         </div>
         <div className="searchResultsDiv">
 
-          <div className="recipes">
-            <h3>Recipes: </h3>
+          <div className="simpleFoods">
+            <h3>Simple foods: </h3>
           { 
-            searchResults[0] === undefined
+            searchResults[5] === undefined
             ? <p> please start search</p>
-            : searchResults[0].results.slice(0, 3).map((recipe)=>{
+            : searchResults[5].results.slice(0, 7).map((simpleFood)=>{
               return(
-                <div key={recipe.id}>
-                  <p>{recipe.name}</p>
-                  <p><a href={recipe.link}>Recipe Link</a></p>
-                  <img className="recipeImg" src={recipe.image} alt={recipe.name}/>
+                <div key={simpleFood.id}>
+                  <p>{simpleFood.name}</p>
+                  <img className="simpleFoodImg" src={simpleFood.image} alt={simpleFood.name}/>
+                  <button onClick={ () => {handleClickSimple(simpleFood.id)}}>View Nutritional Information</button>
                 </div>
               )
             })
@@ -588,6 +603,23 @@ function App() {
       
 
       <div className="toolDiv">
+          <div className="recipes">
+            <h3>Recipes: </h3>
+            {
+              searchResults[0] === undefined
+                ? <p> please start search</p>
+                : searchResults[0].results.slice(0, 7).map((recipe) => {
+                  return (
+                    <div key={recipe.id}>
+                      <p>{recipe.name}</p>
+                      <p><a href={recipe.link}>Recipe Link</a></p>
+                      <img className="recipeImg" src={recipe.image} alt={recipe.name} />
+                    </div>
+                  )
+                })
+
+            }
+          </div>
         </div>
 
       </section>

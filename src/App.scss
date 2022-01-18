@@ -85,16 +85,21 @@ nav ul li a {
 .productDisplay {
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 20% 5% 5% 10%;
+  grid-template-rows: 25% 10% 10% 5% 10%;
 }
 .productDescription {
   grid-column-start: 1;
   grid-column-end: 4;
 }
+.addDiaryBtn {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin: 0 auto;
+}
 .productDescriptionImg {
   margin: 10px 10px;
 }
-.recipes, .products, .productDisplay {
+.simpleFoods, .products, .productDisplay {
   width: 32%;
   border-right: 2px solid black;
 }
@@ -103,6 +108,7 @@ nav ul li a {
     flex-direction: row;
     justify-content: space-evenly;
 }
+
 @media (prefers-reduced-motion: no-preference) {
   .logoIcon {
     animation: App-logo-spin 3 5s linear;

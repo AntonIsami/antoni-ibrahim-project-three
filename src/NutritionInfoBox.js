@@ -3,12 +3,13 @@ import NutritionDatabase from './firebase.js';
 
 const NutritionInfoBox = (props) => {
 
-    const addItemToDiary = (productObject) => {
+    const addItemToDatabase = (productObject) => {
         const database = getDatabase(NutritionDatabase);
         const dbRootAddress = ref(database);
 
 
         push(dbRootAddress, productObject);
+
     }
     const sugarPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sugar');
 
@@ -17,12 +18,18 @@ const NutritionInfoBox = (props) => {
     const satPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Saturated Fat');
 
     const sodPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sodium');
-    
+
+    const proPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Protein');
+
+    const fibPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Fiber');
+
     return (
         <div className="productDisplay">
             <div className="productDescription" key={props.id}>
                 <h3>Nutritional Info:</h3>
-                <h4>{props.title}</h4>
+                <h4>Nutritional info is per serving</h4>
+                <br></br>
+                <h5>{props.title}</h5>
                 <h5>Nutritional info is per serving</h5>
                 <h6>(percentage = daily value)</h6>
                 <img className="productDescriptionImg" src={props.image} alt={props.title}/>
@@ -52,7 +59,7 @@ const NutritionInfoBox = (props) => {
                 props.object.nutrition.nutrients[transPos] === undefined
                 ? null
                 :<div className="transFats nutritionCategory">
-                        <p>Transfats:</p> <p>{props.object.nutrition.nutrients[transPos].amount} g</p>
+                    <p>Transfats:</p> <p>{props.object.nutrition.nutrients[transPos].amount} g</p>
                 </div>
             }
 
@@ -60,25 +67,36 @@ const NutritionInfoBox = (props) => {
                 props.object.nutrition.nutrients[satPos] === undefined
                 ? null
                 :<div className="saturatedFats nutritionCategory">
-                        <p>Saturated fats:</p> <p>{props.object.nutrition.nutrients[satPos].amount} g</p>
+                    <p>Saturated fats:</p> <p>{props.object.nutrition.nutrients[satPos].percentOfDailyNeeds}%</p>
                 </div>
             }
-            {/* <div className="sodium nutritionCategory">
-                <p>Sodium:</p> <p>{props.sodium} g</p>
-            </div> */}
-
-            <div className="protein nutritionCategory">
-                <p>Protein:</p> <p>{props.protein}</p>
-            </div>
-
-            {/* <div className="fibre nutritionCategory">
-                <p>Fibre:</p> <p>{props.fibre} g</p>
-            </div> */}
 
             {
-            
+                props.object.nutrition.nutrients[sodPos] === undefined
+                ? null
+                :<div className="sodium nutritionCategory">
+                    <p>Sodium:</p> <p>{props.object.nutrition.nutrients[sodPos].percentOfDailyNeeds}%</p>
+                </div>
             }
-            <button onClick={()=>{addItemToDiary(props)}}>Add 1 Serving to Diary</button>
+            
+            {
+                props.object.nutrition.nutrients[proPos] === undefined
+                ? null
+                :<div className="protein nutritionCategory">
+                        <p>Protein:</p> <p>{props.object.nutrition.nutrients[proPos].amount} g</p>
+                </div>
+            }
+
+            {
+                props.object.nutrition.nutrients[fibPos] === undefined
+                ? null
+                :<div className="fibre nutritionCategory">
+                        <p>Fiber:</p> <p>{props.object.nutrition.nutrients[fibPos].amount} g</p>
+                </div>
+            }
+
+            
+            <button className="addDiaryBtn" onClick={()=>{addItemToDatabase(props)}}>Add 1 Serving to Diary</button>
             <img src={props.label} alt="nutrition label" className="nutritionLabel" />
         </div>
     )
