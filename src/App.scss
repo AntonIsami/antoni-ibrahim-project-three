@@ -36,6 +36,10 @@ nav ul li a {
   text-decoration: none;
   font-size: 25px;
   margin-right: 25px;
+  color: white;
+}
+nav ul li a:hover {
+  color: lightgrey;
 }
 .logo {
   font-size: 30px;
