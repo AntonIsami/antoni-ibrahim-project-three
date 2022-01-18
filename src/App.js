@@ -9,7 +9,7 @@ import NutritionInfoBox from './NutritionInfoBox.js';
 // import Journal from './Journal.js';
 import axios from 'axios';
 
-import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
+// import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
 import NutritionDatabase from './firebase.js';
 
 
@@ -27,8 +27,8 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [nutritionLabel, setNutritionLabel] = useState("");
   const [nutritionInfo, setNutritionInfo] = useState("");
-  const [simpleNutritionInfo, setSimpleNutritionInfo] = useState({});
-  const [productNutrition, setProductNutrition] = useState({});
+  // const [simpleNutritionInfo, setSimpleNutritionInfo] = useState({});
+  // const [productNutrition, setProductNutrition] = useState({});
   
   useEffect( () => {
     axios({

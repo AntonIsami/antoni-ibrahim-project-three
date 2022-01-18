@@ -1,4 +1,4 @@
-import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
+import { getDatabase, ref, push } from 'firebase/database';
 import NutritionDatabase from './firebase.js';
 
 const NutritionInfoBox = (props) => {
