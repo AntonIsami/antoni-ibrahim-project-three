@@ -6,7 +6,7 @@ const SimpleNutritionInfoBox = (props) => {
     const addItemToDatabase = (productObject) => {
         const database = getDatabase(NutritionDatabase);
         const dbRootAddress = ref(database, 'simpleFoods');
-
+        
 
         push(dbRootAddress, productObject.object);
 
@@ -88,7 +88,7 @@ const SimpleNutritionInfoBox = (props) => {
                     props.object.nutrition.nutrients[satPos] === undefined
                         ? null
                         : <div className="saturatedFats nutritionCategory">
-                            <p>Saturated fats:</p> <p>{props.object.nutrition.nutrients[satPos].percentOfDailyNeeds}%</p>
+                            <p>Sat. fats:</p> <p>{props.object.nutrition.nutrients[satPos].amount} g</p>
                         </div>
                 }
 
@@ -96,7 +96,7 @@ const SimpleNutritionInfoBox = (props) => {
                     props.object.nutrition.nutrients[sodPos] === undefined
                         ? null
                         : <div className="sodium nutritionCategory">
-                            <p>Sodium:</p> <p>{props.object.nutrition.nutrients[sodPos].percentOfDailyNeeds}%</p>
+                            <p>Sodium:</p> <p>{props.object.nutrition.nutrients[sodPos].amount}mg</p>
                         </div>
                 }
 

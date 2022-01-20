@@ -36,7 +36,8 @@ const NutritionInfoBox = (props) => {
             </div>
 
             <div className="calories nutritionCategory">
-                <p>Calories:</p><p>{props.calories}</p>
+                <p>Calories:</p>
+                <p>{props.calories}</p>
             </div>
 
             <div className="carbs nutritionCategory">
@@ -67,7 +68,7 @@ const NutritionInfoBox = (props) => {
                 props.object.nutrition.nutrients[satPos] === undefined
                 ? null
                 :<div className="saturatedFats nutritionCategory">
-                    <p>Saturated fats:</p> <p>{props.object.nutrition.nutrients[satPos].percentOfDailyNeeds}%</p>
+                    <p>Sat. fats:</p> <p>{props.object.nutrition.nutrients[satPos].percentOfDailyNeeds}%</p>
                 </div>
             }
 
@@ -96,7 +97,7 @@ const NutritionInfoBox = (props) => {
             }
 
             
-            <button className="addDiaryBtn" onClick={() => { addItemToDatabase(props, props.object.nutrition.nutrients[sodPos])}}>Add 1 Serving to Diary</button>
+            <button className="addDiaryBtn" onClick={() => { addItemToDatabase(props)}}>Add 1 Serving to Diary</button>
             <img src={props.label} alt="nutrition label" className="nutritionLabel" />
         </div>
     )

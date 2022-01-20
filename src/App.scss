@@ -61,23 +61,95 @@ nav ul li a:hover {
   padding: 0;
   margin: 0;
 }
+.landingText {
+  margin-bottom: 50px;
+}
 
 .fire {
   color: gold;
 }
+.diarySection {
+  background: rgb(47, 49, 54);
+  color: rgb(140, 146, 151);
+  padding-bottom: 200px;
+  padding-top: 40px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+}
+.productsRow p {
+  position: absolute;
+  left: -80px;
+}
 .searchResultsDiv {
   display: flex;
+  background: rgb(47, 49, 54);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: rgb(140, 146, 151);
+  padding: 15px 0;
+  
+}
+.products p, .simpleFoods p, .nutritionCategory p{ 
+  font-size: 14px;
+}
+.nameRow {
+  width: 20%;
+  text-align: left;
+  
+}
+.otherRow {
+  width: 7%;
+  margin: 10px auto;
+}
+.dataRow {
   background: white;
   color: black;
-  padding: 15px 0;
-
+  padding: 10px 0;
+}
+.nutrientName {
+text-align: center;
+width: 7%;
+margin: 5px auto;
+}
+.searchResultsDiv h3 {
+  background: rgb(47, 49, 54);
+  text-decoration: underline;
+}
+.recipes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.recipe {
+  width: 20%;
 }
 .recipeImg {
-  height: 75px;
+  height: 150px;
 }
 .productImg {
   height: 100px;
+  display: block;
+  margin: 0 auto;
 }
+.simpleFoodImg {
+  width: 33%;
+}
+
+.nutritionBtn {
+  width: 100%;
+  border-radius: 4%;
+  background: rgb(140, 146, 151);
+  border: none;
+  color: white;
+  font-size: 15px;
+}
+
 .nutritionLabel {
   height: 300px;
   grid-column-start: 1;
@@ -85,12 +157,19 @@ nav ul li a:hover {
   margin: 0 auto;
 }
 
-
+.foodResult {
+  border: 3px solid black;
+ background: rgb(47, 49, 54);
+}
 .productDisplay {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 25% 10% 10% 5% 10%;
+  grid-template-columns: 33% 33% 34%;
+  grid-template-rows: 25% 5% 5% 5% 5%;
+  border-right: 2px solid black;
+  background: rgb(47, 49, 54);
+  color: rgb(140, 146, 151);
 }
+
 .productDescription {
   grid-column-start: 1;
   grid-column-end: 4;
@@ -99,18 +178,28 @@ nav ul li a:hover {
   grid-column-start: 1;
   grid-column-end: 4;
   margin: 0 auto;
+  background: rgb(140, 146, 151);
+  color: white;
+  border: none;
 }
 .productDescriptionImg {
   margin: 10px 10px;
 }
 .simpleFoods, .products, .productDisplay {
-  width: 32%;
-  border-right: 2px solid black;
+  width: 25%;
 }
 .nutritionCategory {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    border: 2px solid black;
+    align-items: center;
+}
+
+.nutritionCategory{
+  border-right: none;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (prefers-reduced-motion: no-preference) {

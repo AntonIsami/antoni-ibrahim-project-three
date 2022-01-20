@@ -7,7 +7,7 @@ import Header from './Header.js';
 import Landing from './Landing.js';
 import NutritionInfoBox from './NutritionInfoBox.js';
 import SimpleNutritionInfoBox from './SimpleNutritionInfoBox.js';
-// import Journal from './Journal.js';
+import Diary from './Diary.js';
 import axios from 'axios';
 
 import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
@@ -29,9 +29,9 @@ function App() {
   const [nutritionLabel, setNutritionLabel] = useState("");
   const [nutritionInfo, setNutritionInfo] = useState("");
   const [simpleNutritionInfo, setSimpleNutritionInfo] = useState({});
-  const [productNutrition, setProductNutrition] = useState({});
+  // const [productNutrition, setProductNutrition] = useState({});
   
-  useEffect( () => {
+  const callApiFirst = () => {
     axios({
       url: 'https://api.spoonacular.com/food/search',
       method: 'GET',
@@ -42,16 +42,33 @@ function App() {
       }
     }).then((response) => {
       setSearchResults(response.data.searchResults);
+      if (searchResults[5].totalResults === 0) {
+        document.querySelector(".errorHandle").innerHTML = `
+        No results found
+        `
+      } if (searchResults[1].totalResults === 0) {
+        document.querySelector(".errorHandleProduct").innerHTML = `
+       No results found
+        `
+        document.querySelector(".errorHandleForm").innerHTML = `
+        Try another search
+        `
+      } if (searchResults[0].totalResults === 0) {
+        document.querySelector(".errorHandleRecipes").innerHTML = `
+        No results found
+        `
+      }
     })
-  }, [searchTerm])
+  }
 
   
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setSearchTerm(userInput);
+    callApiFirst();
     setUserInput("");
-    
+
   }
 
   const handleInput = (event) => {
@@ -96,16 +113,16 @@ function App() {
 
   
   // in useEffect make a copy of the object so the api object is untouched
-  useEffect(()=>{
-    const database = getDatabase(NutritionDatabase);
-    const dbRootAddress = ref(database);
+  // useEffect(()=>{
+  //   const database = getDatabase(NutritionDatabase);
+  //   const dbRootAddress = ref(database);
 
-    push(dbRootAddress, productNutrition);
+  //   push(dbRootAddress, productNutrition);
     
-  },[])
+  // },[])
 
   
-  // const database = getDatabase(firebaseProject);
+  // const database = getDatabase(NutritionDatabase);
   // const dbRef = ref(database);
 
   // onValue(dbRef, (response) => {
@@ -138,43 +155,56 @@ function App() {
       }</button>
       <FontAwesomeIcon icon={faCoffee} />
       <p className="fire"> Hey hello </p>
-      <section className="wrapper journalFlex">
+      <section className="diarySection">
+      <div className="wrapper diaryFlex">
+      <Diary />
+      </div>
+      </section>
+      <section className="wrapper formFlex">
         <div className="formDiv">
           <form onSubmit={ handleSubmit }>
             <label htmlFor="search" className="sr-only">Product &amp; Recipe Search</label>
             <input type="text" id="search" onChange={ handleInput } value={userInput} ></input>
+            <p className="errorHandleForm"></p>
           </form>
         </div>
         <div className="searchResultsDiv">
 
           <div className="simpleFoods">
             <h3>Simple foods: </h3>
+            <p className="errorHandle"></p>
           { 
             searchResults[5] === undefined
             ? <p> please start search</p>
-            : searchResults[5].results.slice(0, 7).map((simpleFood)=>{
+            : 
+            (<>
+            
+              {searchResults[5].results.slice(0, 8).map((simpleFood)=>{
               return(
-                <div key={simpleFood.id}>
+                <div className="foodResult" onClick={ () => {handleClickSimple(simpleFood.id)}} key={simpleFood.id}>
+                  
                   <p>{simpleFood.name}</p>
                   <img className="simpleFoodImg" src={simpleFood.image} alt={simpleFood.name}/>
-                  <button onClick={ () => {handleClickSimple(simpleFood.id)}}>View Nutritional Information</button>
+                  <button className="nutritionBtn" >View Nutritional Information</button>
                 </div>
               )
             })
-          
+          }
+          </>)
           }
           </div>
 
           <div className="products">
             <h3>Products: </h3> 
+            <p className="errorHandleProduct"></p>
           {searchResults[1] === undefined
             ? null
             :searchResults[1].results.slice(0, 7).map((product)=>{
               return (
-                <div id="product" key={product.id}>
+                <div className="foodResult" id="product" key={product.id}>
                   <p>{product.name}</p>
                   <img className="productImg" src={product.image} alt={product.name}/>
-                  <button onClick={ () => {handleClick(product.id)}}>View Nutritional Information</button>
+                  <button className="nutritionBtn" onClick={ () => {handleClick(product.id)}}>View Nutritional Information</button>
                 </div>
               )
             })  
@@ -215,14 +245,16 @@ function App() {
       
 
       <div className="toolDiv">
+          <h3>Recipes: </h3>
           <div className="recipes">
-            <h3>Recipes: </h3>
+           
+            <p className='errorHandleRecipes'></p>
             {
               searchResults[0] === undefined
                 ? <p> please start search</p>
-                : searchResults[0].results.slice(0, 7).map((recipe) => {
+                : searchResults[0].results.slice(0, 10).map((recipe) => {
                   return (
-                    <div key={recipe.id}>
+                    <div className='recipe' key={recipe.id}>
                       <p>{recipe.name}</p>
                       <p><a href={recipe.link}>Recipe Link</a></p>
                       <img className="recipeImg" src={recipe.image} alt={recipe.name} />
