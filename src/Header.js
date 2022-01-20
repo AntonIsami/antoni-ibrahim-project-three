@@ -13,7 +13,7 @@ const Header = () => {
                     <ul className="navFlex">
                         <li><a href="#home">HOME</a></li>
                         <li><a href="#journal">JOURNAL</a></li>
-                        <li><a href="#contact">CONTACT</a></li>
+                        <li><a href="#search">SEARCH</a></li>
                     </ul>
                 </nav>
             </header>

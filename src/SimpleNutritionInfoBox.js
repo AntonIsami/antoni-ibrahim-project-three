@@ -46,7 +46,7 @@ const SimpleNutritionInfoBox = (props) => {
                     props.object.nutrition.nutrients[calPos] === undefined
                         ? null
                         : <div className="calories nutritionCategory">
-                            <p>Calories:</p> <p>{props.object.nutrition.nutrients[calPos].amount} </p>
+                            <p>Calories(kCal):</p> <p>{props.object.nutrition.nutrients[calPos].amount} </p>
                         </div>
                 }
 

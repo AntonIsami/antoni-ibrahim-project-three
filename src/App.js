@@ -1,7 +1,7 @@
 import './App.scss';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faLaptopMedical } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee, faLaptopMedical} from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import Header from './Header.js';
 import Landing from './Landing.js';
@@ -10,28 +10,26 @@ import SimpleNutritionInfoBox from './SimpleNutritionInfoBox.js';
 import Diary from './Diary.js';
 import axios from 'axios';
 
-import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
-import NutritionDatabase from './firebase.js';
 
 
  
-library.add(faCoffee, faLaptopMedical);
+library.add(faCoffee, faLaptopMedical)
 
 
 function App() {
-  // const apiKey = "5306a0f7f32242acaec3f5e05a575696";
+  const apiKey = "5306a0f7f32242acaec3f5e05a575696";
   //bench API
-  const apiKey = "72e6c8349f5542e981ba7aaa8eb67e16";
+  // const apiKey = "72e6c8349f5542e981ba7aaa8eb67e16";
   const [loggedIn, setLoggedIn] = useState(false);
   const [userInput, setUserInput] = useState("");
-  const [searchTerm, setSearchTerm] = useState("Pasta");
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [nutritionLabel, setNutritionLabel] = useState("");
   const [nutritionInfo, setNutritionInfo] = useState("");
   const [simpleNutritionInfo, setSimpleNutritionInfo] = useState({});
-  // const [productNutrition, setProductNutrition] = useState({});
+
   
-  const callApiFirst = () => {
+  useEffect(()=>{
     axios({
       url: 'https://api.spoonacular.com/food/search',
       method: 'GET',
@@ -42,31 +40,17 @@ function App() {
       }
     }).then((response) => {
       setSearchResults(response.data.searchResults);
-      if (searchResults[5].totalResults === 0) {
-        document.querySelector(".errorHandle").innerHTML = `
-        No results found
-        `
-      } if (searchResults[1].totalResults === 0) {
-        document.querySelector(".errorHandleProduct").innerHTML = `
-       No results found
-        `
-        document.querySelector(".errorHandleForm").innerHTML = `
-        Try another search
-        `
-      } if (searchResults[0].totalResults === 0) {
-        document.querySelector(".errorHandleRecipes").innerHTML = `
-        No results found
-        `
-      }
+      
     })
-  }
+  },[searchTerm])
+  
 
   
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setSearchTerm(userInput);
-    callApiFirst();
+  
     setUserInput("");
 
   }
@@ -111,38 +95,6 @@ function App() {
     })
   }
 
-  
-  // in useEffect make a copy of the object so the api object is untouched
-  // useEffect(()=>{
-  //   const database = getDatabase(NutritionDatabase);
-  //   const dbRootAddress = ref(database);
-
-  //   push(dbRootAddress, productNutrition);
-    
-  // },[])
-
-  
-  // const database = getDatabase(NutritionDatabase);
-  // const dbRef = ref(database);
-
-  // onValue(dbRef, (response) => {
-  //   // here we're creating a variable to store the new state we want to introduce to our app
-  //   const newState = [];
-
-  //   // here we store the response from our query to Firebase inside of a variable called data.
-  //   // .val() is a Firebase method that gets us the information we want
-  //   const data = response.val();
-  //   // data is an object, so we iterate through it using a for in loop to access each book name 
-
-  //   for (let key in data) {
-  //     // inside the loop, we push each book name to an array we already created inside the onValue() function called newState
-  //     newState.push(data[key]);
-  //   }
-
-  //   // then, we call setBooks in order to update our component's state using the local array newState
-  //   setBooks(newState);
-  // });
-
   return (
     <div className="App">
       <Header />
@@ -153,17 +105,17 @@ function App() {
         ? "Logged in, click to log out"
         : "log in"
       }</button>
-      <FontAwesomeIcon icon={faCoffee} />
-      <p className="fire"> Hey hello </p>
-      <section className="diarySection">
+      
+     
+      <section className="diarySection" id="journal">
       <div className="wrapper diaryFlex">
       <Diary />
       </div>
       </section>
-      <section className="wrapper formFlex">
+      <section className="wrapper formFlex" id="search">
         <div className="formDiv">
           <form onSubmit={ handleSubmit }>
-            <label htmlFor="search" className="sr-only">Product &amp; Recipe Search</label>
+            <label htmlFor="search">Product &amp; Recipe Search</label>
             <input type="text" id="search" onChange={ handleInput } value={userInput} ></input>
             <p className="errorHandleForm"></p>
           </form>
@@ -172,7 +124,12 @@ function App() {
 
           <div className="simpleFoods">
             <h3>Simple foods: </h3>
-            <p className="errorHandle"></p>
+            
+              {
+              searchResults[0].totalResults === 0
+              ? <p className="errorHandle">No results</p>
+              : null
+              }
           { 
             searchResults[5] === undefined
             ? <p> please start search</p>
@@ -196,7 +153,11 @@ function App() {
 
           <div className="products">
             <h3>Products: </h3> 
-            <p className="errorHandleProduct"></p>
+            {
+              searchResults[1].totalResults === 0
+                ? <p className="errorHandleProduct">No results</p>
+                : null
+            }
           {searchResults[1] === undefined
             ? null
             :searchResults[1].results.slice(0, 7).map((product)=>{
@@ -245,7 +206,7 @@ function App() {
       
 
       <div className="toolDiv">
-          <h3>Recipes: </h3>
+          <h3>Healthy Recipes: </h3>
           <div className="recipes">
            
             <p className='errorHandleRecipes'></p>

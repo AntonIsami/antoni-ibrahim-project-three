@@ -2,7 +2,7 @@ import placeholder from './Placeholder.png';
 
 const Landing = () => {
     return (
-        <div className='wrapper landingFlex'>
+        <div id="home" className='wrapper landingFlex'>
             <div className="landingText">
                 <h1>Let's track those macros</h1>
                 <h2>Help find balance in your daily diet</h2>

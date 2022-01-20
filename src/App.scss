@@ -24,6 +24,7 @@ body{
   align-items: center;
   font-weight: 800;
 }
+
 .navFlex {
   display: flex;
   flex-direction: row;
@@ -55,7 +56,8 @@ nav ul li a:hover {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding-top: 75px;
+  padding-top: 125px;
+  padding-bottom: 125px;
 }
 .landingFlex h1 {
   padding: 0;
@@ -65,12 +67,13 @@ nav ul li a:hover {
   margin-bottom: 50px;
 }
 
-.fire {
-  color: gold;
+.formDiv {
+  padding-top: 50px;
+  padding-bottom: 25px;
 }
 .diarySection {
   background: rgb(47, 49, 54);
-  color: rgb(140, 146, 151);
+  color: white;
   padding-bottom: 200px;
   padding-top: 40px;
 }
@@ -90,9 +93,13 @@ nav ul li a:hover {
   background: rgb(47, 49, 54);
   background-repeat: no-repeat;
   background-size: cover;
-  color: rgb(140, 146, 151);
+  color: white;
   padding: 15px 0;
+  padding-bottom: 200px;
   
+}
+.deleteIcon {
+  margin-top: 20px;
 }
 .products p, .simpleFoods p, .nutritionCategory p{ 
   font-size: 14px;
@@ -100,7 +107,7 @@ nav ul li a:hover {
 .nameRow {
   width: 20%;
   text-align: left;
-  
+  text-transform: capitalize;
 }
 .otherRow {
   width: 7%;
@@ -128,6 +135,9 @@ margin: 5px auto;
 }
 .recipe {
   width: 20%;
+}
+.recipe a {
+  color: white;
 }
 .recipeImg {
   height: 150px;
@@ -167,7 +177,7 @@ margin: 5px auto;
   grid-template-rows: 25% 5% 5% 5% 5%;
   border-right: 2px solid black;
   background: rgb(47, 49, 54);
-  color: rgb(140, 146, 151);
+  color: white
 }
 
 .productDescription {
