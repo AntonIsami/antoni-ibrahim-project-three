@@ -1,0 +1,117 @@
+.formDiv {
+  padding-top: 50px;
+  padding-bottom: 25px;
+}
+.formDiv h3 {
+  font-size: 36px;
+  padding-bottom: 30px;
+}
+
+.searchResultsDiv {
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  padding-top: 15px;
+  padding-bottom: 120px;
+}
+
+.foodName {
+  padding-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.errorHandleForm {
+  padding-bottom: 10px;
+
+}
+
+.searchResultsDiv h3 {
+  padding: 15px 0;
+  text-decoration: underline;
+}
+.formDiv label {
+  padding-right: 20px;
+}
+
+.productImg {
+  height: 100px;
+  display: block;
+  margin: 0 auto;
+}
+.simpleFoodImg {
+  width: 33%;
+}
+
+.nutritionBtn {
+  width: 100%;
+  border-radius: 4%;
+  background: rgb(140, 146, 151);
+  border: none;
+  color: black;
+  font-size: 15px;
+  padding: 3px 0;
+  margin-top: 5px;
+  &:hover {
+    background: green;
+    color: white;
+  }
+}
+
+.nutritionLabel {
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin: 0 auto;
+}
+.products {
+  background: rgb(206, 212, 218);
+  border-right: 1px solid black;
+  color: black;
+}
+.foodResult {
+  padding: 20px 20px;
+}
+.productDisplay {
+  display: grid;
+  grid-template-columns: 33% 33% 34%;
+  grid-template-rows: 25% 5% 5% 5% 5%;
+  border-right: 1px solid black;
+  background: rgb(173, 181, 189);
+  color: black;
+}
+
+.productDescription {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.addDiaryBtn {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin: 0 auto;
+  background: rgb(140, 146, 151);
+  color: black;
+  border: none;
+  &:hover {
+    background: green;
+    color: white;
+  }
+}
+.productDescriptionImg {
+  margin: 10px 10px;
+}
+.simpleFoods {
+  background: rgb(47, 49, 54);
+}
+.simpleFoods, .products, .productDisplay {
+  width: 25%;
+}
+.nutritionCategory {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 2px solid black;
+    align-items: center;
+    width: 85%;
+    margin-left: 10px;
+}

@@ -1,0 +1,53 @@
+.diarySection {
+  background: rgb(47, 49, 54);
+  color: white;
+  padding-bottom: 200px;
+  padding-top: 40px;
+  font-weight: bold;
+}
+
+.nutrientRow {
+  border-bottom: 2px solid black;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  text-align: center;
+  margin: 10px auto;
+}
+.productsRow p {
+  position: absolute;
+  left: -90px;
+  top: 10px;
+}
+.products p, .simpleFoods p, .nutritionCategory p{ 
+  font-size: 14px;
+}
+.nameRow {
+  width: 20%;
+  text-align: left;
+  text-transform: capitalize;
+  border-right: 2px solid black;
+  padding-right: 2px;
+}
+.otherRow {
+  width: 7%;
+  margin: 10px auto;
+}
+.dataRow {
+  background: white;
+  color: black;
+  padding: 10px 0;
+}
+.nutrientName {
+text-align: center;
+width: 7%;
+margin: 5px auto;
+}
+.deleteIcon {
+  margin-top: 20px;
+  &:hover {
+    color: red;
+  }
+}
