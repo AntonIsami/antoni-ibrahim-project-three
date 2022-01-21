@@ -4,7 +4,7 @@ html,
 body{
   margin: 0;
   padding: 0;  
-  overflow-x: hidden;
+ 
 }
 .App {
   text-align: center;
@@ -13,7 +13,7 @@ body{
   -moz-osx-font-smoothing: grayscale;
 }
 .wrapper {
-  max-width: 1400px;
+  max-width: 1200px;
   width: 85%;
   margin: 0 auto;
 }
@@ -24,6 +24,7 @@ body{
   justify-content: space-between; 
   align-items: center;
   font-weight: 800;
+  padding-top: 20px;
 }
 
 .navFlex {
@@ -53,7 +54,7 @@ nav ul li a:hover {
   margin-right: 20px;
 }
 .landingImg{
-  width: 60%;
+  width: 55%;
 }
 .landingImg img {
   width: 100%;
@@ -75,12 +76,19 @@ nav ul li a:hover {
 .landingText {
   margin-bottom: 50px;
 }
-// .formFlex {
-//   background: 
-// }
+.landingText h2 {
+  font-size: 40px;
+}
+.landingText h3 {
+  font-size: 25px;
+}
 .formDiv {
   padding-top: 50px;
   padding-bottom: 25px;
+}
+.formDiv h3 {
+  font-size: 36px;
+  padding-bottom: 30px;
 }
 .diarySection {
   background: rgb(47, 49, 54);
@@ -124,7 +132,7 @@ nav ul li a:hover {
   }
 }
 .errorHandleForm {
-  padding-top: 10px;
+  padding-bottom: 10px;
 
 }
 .products p, .simpleFoods p, .nutritionCategory p{ 
@@ -180,6 +188,7 @@ margin: 5px auto;
 .recipeImg {
   height: 150px;
   width: 100%;
+  padding-top: 20px;
 }
 .productImg {
   height: 100px;

@@ -4,8 +4,8 @@ const Landing = () => {
     return (
         <div id="home" className='wrapper landingFlex'>
             <div className="landingText">
-                <h1>Let's track those macros</h1>
-                <h2>Help find balance in your daily diet</h2>
+                <h2>Let's track those macros</h2>
+                <h3>Help find balance in your daily diet</h3>
             </div>
             <div className="landingImg">
                 <img src={exampleImage2} alt="Sample result from Nutritional Info Tool"/>

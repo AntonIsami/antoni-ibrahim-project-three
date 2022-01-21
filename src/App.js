@@ -129,19 +129,24 @@ function App() {
 
       <section className="wrapper formFlex" id="search">
         <div className="formDiv">
-          <form onSubmit={ handleSubmit }>
-            <label htmlFor="search">Product &amp; Recipe Search</label>
-            <input type="text" id="search" onChange={ handleInput } value={userInput} ></input>
-            <p className="errorHandleForm">
-              {
-                searchTerm === ""
+         <h3>Get Your Daily Journal Started By Searching <br></br>For Your Grocery Products</h3>
+          <p className="errorHandleForm">
+            {
+              searchTerm === ""
                 ? "please start search"
                 : null
-              }
-            </p>
-            <p>
-              {errorMessage}
-            </p>
+            }
+          </p>
+          <p>
+            {errorMessage}
+          </p>
+          <form onSubmit={ handleSubmit }>
+            
+            
+            <label htmlFor="search">Product &amp; Recipe Search</label>
+            <input type="text" id="search" onChange={ handleInput } value={userInput} ></input>
+          
+            
           </form>
         </div>
 
