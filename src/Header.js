@@ -6,8 +6,8 @@ const Header = () => {
         <div className="header">
             <header className="wrapper headerFlex">
                 <p className="logo">
-                <FontAwesomeIcon className="logoIcon" icon="laptop-medical"/>
-                NUTRI CO  
+                    <FontAwesomeIcon className="logoIcon" icon="laptop-medical"/>
+                    NUTRI CO  
                 </p>
                 <nav>
                     <ul className="navFlex">

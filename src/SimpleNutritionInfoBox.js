@@ -6,8 +6,6 @@ const SimpleNutritionInfoBox = (props) => {
     const addItemToDatabase = (productObject) => {
         const database = getDatabase(NutritionDatabase);
         const dbRootAddress = ref(database, 'simpleFoods');
-        
-
         push(dbRootAddress, productObject.object);
 
     }
@@ -46,7 +44,7 @@ const SimpleNutritionInfoBox = (props) => {
                     props.object.nutrition.nutrients[calPos] === undefined
                         ? null
                         : <div className="calories nutritionCategory">
-                            <p>Calories(kCal):</p> <p>{props.object.nutrition.nutrients[calPos].amount} </p>
+                        <p>Calories:</p> <p>{props.object.nutrition.nutrients[calPos].amount} kCal </p>
                         </div>
                 }
 

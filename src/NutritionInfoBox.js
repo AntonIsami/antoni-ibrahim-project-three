@@ -12,15 +12,10 @@ const NutritionInfoBox = (props) => {
 
     }
     const sugarPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sugar');
-
     const transPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Trans Fat');
-
     const satPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Saturated Fat');
-
     const sodPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sodium');
-
     const proPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Protein');
-
     const fibPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Fiber');
 
     return (

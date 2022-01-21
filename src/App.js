@@ -1,6 +1,5 @@
 import './App.scss';
 import { library } from '@fortawesome/fontawesome-svg-core';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faLaptopMedical} from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import Header from './Header.js';
@@ -9,6 +8,8 @@ import NutritionInfoBox from './NutritionInfoBox.js';
 import SimpleNutritionInfoBox from './SimpleNutritionInfoBox.js';
 import Diary from './Diary.js';
 import axios from 'axios';
+import { getDatabase, ref, remove } from 'firebase/database';
+import NutritionDatabase from './firebase.js';
 
 
 
@@ -20,7 +21,6 @@ function App() {
   const apiKey = "5306a0f7f32242acaec3f5e05a575696";
   //bench API
   // const apiKey = "72e6c8349f5542e981ba7aaa8eb67e16";
-  const [loggedIn, setLoggedIn] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -28,7 +28,7 @@ function App() {
   const [nutritionInfo, setNutritionInfo] = useState("");
   const [simpleNutritionInfo, setSimpleNutritionInfo] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
-
+  const database = getDatabase(NutritionDatabase);
   
   
   useEffect(()=>{
@@ -42,7 +42,6 @@ function App() {
       }
     }).then((response) => {
       setSearchResults(response.data.searchResults);
-      
     })
   },[searchTerm]);
   
@@ -58,12 +57,14 @@ function App() {
     setUserInput("");
     handleSearchError();
   }
+
   const handleSearchError = () => {
-    if (searchResults[0].totalResults > 0){
-      document.querySelector(".errorHandleForm").innerHTML = "";
+    if (searchResults[5].totalResults === 0){
+      setUserInput("")
     } else{
       setErrorMessage("Try changing your search")
     }
+    console.log(searchResults[5])
   }
 
   const handleInput = (event) => {
@@ -105,26 +106,28 @@ function App() {
       console.log(response.data);
     })
   }
+  
+  const resetDiary = () => {
+    const dbRef1 = ref(database, `Products`);
+    remove(dbRef1);
+    const dbRef2 = ref(database, `simpleFoods`)
+    remove(dbRef2);
+  }
 
   return (
     <div className="App">
       <Header />
       <Landing />
-      <button className="apiButton" onClick={ () => {setLoggedIn( !loggedIn)}}>
-      {
-        loggedIn
-        ? "Logged in, click to log out"
-        : "log in"
-      }</button>
       
      
       <section className="diarySection" id="journal">
-      <div className="wrapper diaryFlex">
-      <Diary />
-      </div>
+        <div className="wrapper diaryFlex">
+          <Diary />
+            <button className="resetBtn" onClick={resetDiary}>Reset</button>
+        </div>
       </section>
-      <section className="wrapper formFlex" id="search">
 
+      <section className="wrapper formFlex" id="search">
         <div className="formDiv">
           <form onSubmit={ handleSubmit }>
             <label htmlFor="search">Product &amp; Recipe Search</label>
@@ -157,11 +160,11 @@ function App() {
             : 
             (<>
             
-              {searchResults[5].results.slice(0, 8).map((simpleFood)=>{
+              {searchResults[5].results.slice(0, 6).map((simpleFood)=>{
               return(
                 <div className="foodResult" onClick={ () => {handleClickSimple(simpleFood.id)}} key={simpleFood.id}>
                   
-                  <p>{simpleFood.name}</p>
+                  <p className='foodName'>{simpleFood.name}</p>
                   <img className="simpleFoodImg" src={simpleFood.image} alt={simpleFood.name}/>
                   <button className="nutritionBtn" >View Nutritional Information</button>
                 </div>
@@ -183,10 +186,10 @@ function App() {
 
               {searchResults[1] === undefined
               ? null
-              :searchResults[1].results.slice(0, 7).map((product)=>{
+              :searchResults[1].results.slice(0, 5).map((product)=>{
                 return (
                   <div className="foodResult" id="product" key={product.id}>
-                    <p>{product.name}</p>
+                    <p className='foodName'>{product.name}</p>
                     <img className="productImg" src={product.image} alt={product.name}/>
                     <button className="nutritionBtn" onClick={ () => {handleClick(product.id)}}>View Nutritional Information</button>
                   </div>
@@ -224,7 +227,7 @@ function App() {
       
 
       <div className="toolDiv">
-          <h3>Healthy Recipes: </h3>
+          <h3>Healthy Recipes With Similar Ingredients: </h3>
           <div className="recipes">
            
             <p className='errorHandleRecipes'></p>
@@ -245,7 +248,9 @@ function App() {
           </div>
         </div>
       </section>
+      <footer><p>Created at Juno College of Technology &copy; 2022</p></footer>
     </div>
+    
     
   );
 }

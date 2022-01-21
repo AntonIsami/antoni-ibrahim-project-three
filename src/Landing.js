@@ -1,4 +1,4 @@
-import exampleImage from './exampleImage.png';
+import exampleImage2 from './exampleImage2.png';
 
 const Landing = () => {
     return (
@@ -8,7 +8,7 @@ const Landing = () => {
                 <h2>Help find balance in your daily diet</h2>
             </div>
             <div className="landingImg">
-                <img src={exampleImage} alt="Sample result from Nutritional Info Tool"/>
+                <img src={exampleImage2} alt="Sample result from Nutritional Info Tool"/>
             </div>
         </div>
     )   
