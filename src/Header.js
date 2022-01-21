@@ -5,10 +5,10 @@ const Header = () => {
     return (
         <div className="header">
             <header className="wrapper headerFlex">
-                <p className="logo">
-                    <FontAwesomeIcon className="logoIcon" icon="laptop-medical"/>
+                <h1 className="logo">
+                    <FontAwesomeIcon className="logoIcon" aria-label="Click to delete food journal entry" icon="laptop-medical"/>
                     NUTRI CO  
-                </p>
+                </h1>
                 <nav>
                     <ul className="navFlex">
                         <li><a href="#home">HOME</a></li>
