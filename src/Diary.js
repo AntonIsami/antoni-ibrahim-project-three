@@ -132,14 +132,34 @@ const Diary = () => {
                     return (
                         <div key={index} className="row">
                             <p className="nameRow">{product[1].name.substring(0, 30)}</p>
-                            <p className='otherRow dataRow'>{product[1].nutrition.nutrients[calPos].amount}</p>
+                            {product[1].nutrition.nutrients[calPos] === undefined
+                                ? <p className='otherRow dataRow'>0</p>
+                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[calPos].amount}</p>
+                            }
                             <p className='otherRow dataRow'>{product[1].nutrition.caloricBreakdown.percentCarbs}%</p>
-                            <p className='otherRow dataRow'>{product[1].nutrition.nutrients[sugarPos].amount} g</p>
-                            <p className='otherRow dataRow'>{product[1].nutrition.nutrients[fatPos].amount} g</p>
-                           
-                            <p className='otherRow dataRow'>{product[1].nutrition.nutrients[satPos].amount} g</p>
-                            <p className='otherRow dataRow'>{product[1].nutrition.nutrients[sodPos].amount} g</p>
-                            <p className='otherRow dataRow'>{product[1].nutrition.nutrients[proPos].amount} g</p>
+
+                            {product[1].nutrition.nutrients[sugarPos] === undefined
+                                ? <p className='otherRow dataRow'>0</p>
+                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[sugarPos].amount} g</p>
+                            }
+
+                            {product[1].nutrition.nutrients[fatPos] === undefined
+                                ? <p className='otherRow dataRow'>0</p>
+                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[fatPos].amount} g</p>
+                            }
+
+                            {product[1].nutrition.nutrients[satPos] === undefined
+                                ? <p className='otherRow dataRow'>0</p>
+                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[satPos].amount} g</p>
+                            }
+                            {product[1].nutrition.nutrients[sodPos] === undefined
+                                ? <p className='otherRow dataRow'>0</p>
+                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[sodPos].amount} g</p>
+                            }
+                            {product[1].nutrition.nutrients[proPos] === undefined
+                                ? <p className='otherRow dataRow'>0</p>
+                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[proPos].amount} g</p>
+                            }
                             <FontAwesomeIcon className="deleteIcon" icon={faTimesCircle} onClick={()=>{deleteJournalItemS(id[index])}}/>
                             
                         </div>
