@@ -1,0 +1,25 @@
+
+.toolDiv {
+  padding: 50px;
+  background: white;
+  color: black;
+}
+
+.recipes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 15px;
+}
+.recipe {
+  width: 18%;
+}
+.recipe a {
+  color: black;
+}
+.recipeImg {
+  height: 150px;
+  width: 100%;
+  padding-top: 20px;
+}

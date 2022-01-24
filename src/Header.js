@@ -1,0 +1,24 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const Header = () => {
+
+    return (
+        <div className="header">
+            <header className="wrapper headerFlex">
+                <h1 className="logo">
+                    <FontAwesomeIcon className="logoIcon" aria-label="Click to delete food journal entry" icon="laptop-medical"/>
+                    NUTRI CO  
+                </h1>
+                <nav>
+                    <ul className="navFlex">
+                        <li><a href="#home">HOME</a></li>
+                        <li><a href="#journal">JOURNAL</a></li>
+                        <li><a href="#search">SEARCH</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+    )
+}
+
+export default Header;
