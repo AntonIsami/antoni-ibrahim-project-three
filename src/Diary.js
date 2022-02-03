@@ -106,7 +106,7 @@ const Diary = () => {
                             {product[1].nutrition.nutrients[proPos] === undefined
                                 ? <p className='otherRow dataRow'>0</p>
                                 : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[proPos].amount} g</p>
-                            }
+                            } 
                             <FontAwesomeIcon className="deleteIcon" icon={faTimesCircle} onClick={() => { deleteJournalItemP(id[index]) }}/>
                         </div>
                     )
