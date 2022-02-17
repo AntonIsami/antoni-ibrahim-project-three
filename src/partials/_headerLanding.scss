@@ -4,8 +4,8 @@
   flex-direction: row;
   justify-content: space-between; 
   align-items: center;
-  font-weight: 800;
   padding-top: 20px;
+  padding-bottom: 25px;
 }
 
 .navFlex {
@@ -34,12 +34,18 @@ nav ul li a:hover {
   pointer-events: none;
   margin-right: 20px;
 }
+.landing {
+  position: relative;
+}
 .landingImg{
-  width: 55%;
+  width: 100%;
+  height: 85vh;
+  border-top: 10px solid white;
 }
 .landingImg img {
   width: 100%;
-  
+  height: 100%;
+  object-fit: cover;
 }
 
 .landingFlex {
@@ -50,16 +56,43 @@ nav ul li a:hover {
   padding-top: 200px;
   padding-bottom: 200px;
 }
-.landingFlex h1 {
+.landingFlex p {
   padding: 0;
   margin: 0;
 }
 .landingText {
   margin-bottom: 50px;
+  position: absolute;
+  top: 40%;
+  color: black;
+  right: 8%;
+  h1 {
+    font-size: 40px;
+    padding-bottom: 20px;
+  }
+  p:first-of-type {
+    font-size: 25px;
+    padding-bottom: 50px;
+  }
+  p:nth-of-type(2) {
+    padding-bottom: 25px;
+  }
 }
-.landingText h2 {
-  font-size: 40px;
+
+.landingArrow {
+  font-size: 45px;
 }
-.landingText h3 {
-  font-size: 25px;
+@media (prefers-reduced-motion: no-preference) {
+  .logoIcon {
+    animation: App-logo-spin 3 5s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

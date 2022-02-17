@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -27,7 +28,8 @@ figure {
 }
 
 hr {
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
   height: 0;
   overflow: visible;
 }
@@ -140,7 +142,8 @@ fieldset {
 }
 
 legend {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   color: inherit;
   display: table;
   max-width: 100%;
@@ -158,7 +161,8 @@ textarea {
 }
 
 [type=checkbox], [type=radio] {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0;
 }
 
@@ -219,37 +223,99 @@ h1, h2, h3, h4, h5, h6, p, a {
   padding: 0;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
+.diarySection {
+  background: #2f3136;
+  color: white;
+  padding-bottom: 200px;
+  padding-top: 40px;
 }
 
-.App {
+.nutrientRow {
+  border-bottom: 2px solid black;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
   text-align: center;
-  font-family: "Noto Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 10px auto;
 }
 
-.wrapper {
-  max-width: 1400px;
-  width: 85%;
-  margin: 0 auto;
+.productsRow p {
+  position: absolute;
+  left: -90px;
+  top: 10px;
+}
+
+.products p, .simpleFoods p, .nutritionCategory p {
+  font-size: 14px;
+}
+
+.nameRow {
+  width: 20%;
+  text-align: left;
+  text-transform: capitalize;
+  border-right: 2px solid black;
+  padding-right: 2px;
+}
+
+.otherRow {
+  width: 7%;
+  margin: 10px auto;
+}
+
+.dataRow {
+  background: white;
+  color: black;
+  padding: 10px 0;
+}
+
+.nutrientName {
+  text-align: center;
+  width: 7%;
+  margin: 5px auto;
+}
+
+.deleteIcon {
+  margin-top: 20px;
+}
+.deleteIcon:hover {
+  color: red;
 }
 
 .headerFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 800;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 20px;
+  padding-bottom: 25px;
 }
 
 .navFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   width: 40%;
+  margin-top: 20px;
 }
 
 nav ul {
@@ -276,49 +342,533 @@ nav ul li a:hover {
   margin-right: 20px;
 }
 
-.landingFlex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  padding-top: 75px;
+.landing {
+  position: relative;
 }
 
-.landingFlex h1 {
+.landingImg {
+  width: 100%;
+  height: 85vh;
+  border-top: 10px solid white;
+}
+
+.landingImg img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.landingFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 200px;
+  padding-bottom: 200px;
+}
+
+.landingFlex p {
   padding: 0;
   margin: 0;
 }
 
-.fire {
-  color: gold;
+.landingText {
+  margin-bottom: 50px;
+  position: absolute;
+  top: 40%;
+  color: black;
+  right: 8%;
+}
+.landingText h1 {
+  font-size: 40px;
+  padding-bottom: 20px;
+}
+.landingText p:first-of-type {
+  font-size: 25px;
+  padding-bottom: 50px;
+}
+.landingText p:nth-of-type(2) {
+  padding-bottom: 25px;
 }
 
-.searchResultsDiv {
-  display: flex;
+.landingArrow {
+  font-size: 45px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logoIcon {
+    -webkit-animation: App-logo-spin 3 5s linear;
+            animation: App-logo-spin 3 5s linear;
+  }
+}
+@-webkit-keyframes App-logo-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes App-logo-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.tutorial {
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 100px 0;
+}
+
+.tutorial1 {
   background: white;
   color: black;
-  padding: 15px 0;
+  position: relative;
+  z-index: 0;
+  padding: 100px 0;
+}
+
+.tutorial2 {
+  background: grey;
+  color: whitesmoke;
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 100px 0;
+}
+
+.tutorial3 {
+  padding: 100px 0;
+  background: black;
+}
+
+.tutorial4 {
+  padding: 100px 0;
+  background: slategray;
+  color: white;
+}
+
+.tutorial1div, .tutorial2div, .tutorial3div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.tutorial4div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tutorial1Text {
+  text-align: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.tutorial1Text h2 {
+  position: relative;
+  margin: 10px 0;
+}
+.tutorial1Text h2::after {
+  content: "";
+  position: absolute;
+  background-color: #90e510;
+  -webkit-box-shadow: 0 0 6px #90e578;
+          box-shadow: 0 0 6px #90e578;
+  left: 10px;
+  width: 95%;
+  height: 10px;
+  bottom: 20px;
+  z-index: -1;
+  opacity: 0.5;
+}
+.tutorial1Text p {
+  font-size: 18px;
+}
+
+.tutorial2Text {
+  text-align: right;
+}
+.tutorial2Text span {
+  left: 0;
+  top: -10px;
+  background: black;
+}
+
+.tutorial3Text {
+  text-align: left;
+}
+.tutorial3Text span {
+  top: -10px;
+  left: -5px;
+  background: grey;
+  color: black;
+}
+.tutorial3Text h2 {
+  text-align: right;
+}
+
+.tutorial4Text {
+  width: 55%;
+  line-height: 32px;
+}
+.tutorial4Text h2 {
+  position: relative;
+  padding: 25px 0;
+}
+.tutorial4Text span {
+  background: grey;
+  padding: 10px 15px;
+  color: white;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.tutorial4Text p {
+  padding-bottom: 35px;
+  font-size: 18px;
+}
+
+.tutorial2Text, .tutorial3Text, .tutorial4text {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+.tutorial2Text h2, .tutorial3Text h2, .tutorial4text h2 {
+  position: relative;
+}
+.tutorial2Text span, .tutorial3Text span, .tutorial4text span {
+  padding: 10px 15px;
+  position: absolute;
+}
+.tutorial2Text p, .tutorial3Text p, .tutorial4text p {
+  font-size: 18px;
+}
+
+.tutorial1Text, .tutorial2Text, .tutorial3Text {
+  width: 45%;
+  line-height: 32px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.tutorial1Text h2, .tutorial2Text h2, .tutorial3Text h2 {
+  padding-bottom: 20px;
+  width: 85%;
+  font-size: 25px;
+}
+.tutorial1Text p, .tutorial2Text p, .tutorial3Text p {
+  width: 85%;
+}
+
+.tutorial1Image, .tutorial2Image, .tutorial3Image {
+  width: 45%;
+}
+.tutorial1Image img, .tutorial2Image img, .tutorial3Image img {
+  width: 100%;
+}
+
+.tutorial4Image {
+  width: 70%;
+}
+.tutorial4Image img {
+  width: 100%;
+}
+
+@media (max-width: 950px) {
+  .landingFlex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .landingImg, .landingText {
+    width: 100%;
+  }
+
+  .productsRow p {
+    display: none;
+  }
+
+  .productDisplay {
+    grid-template-columns: 31% 31% 31%;
+    grid-template-rows: 25% 5% 5% 5% 5% 5%;
+  }
+
+  .addDiaryBtn {
+    margin-left: 20px;
+  }
+
+  .products p, .simpleFoods p, .nutritionCategory p {
+    font-size: 12px;
+  }
+
+  .nutritionBtn {
+    font-size: 14px;
+  }
+
+  .toolDiv {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+
+  .recipe {
+    width: 50%;
+  }
+}
+@media (max-width: 750px) {
+  .searchResultsDiv {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .nutritionLabel {
+    width: 50%;
+  }
+
+  .simpleFoods, .products, .productDisplay {
+    width: 100%;
+  }
+
+  .products p, .simpleFoods p, .nutritionCategory p {
+    font-size: 16px;
+  }
+
+  .products p, .simpleFoods p, .nutritionCategory p {
+    font-size: 16px;
+  }
+
+  .addDiaryBtn {
+    margin: 10px auto;
+    padding: 20px 10px;
+  }
+
+  .diaryTable {
+    font-size: 14px;
+  }
+
+  .otherRow {
+    width: 10%;
+  }
+}
+@media (max-width: 500px) {
+  .recipe {
+    width: 100%;
+  }
+
+  .deleteIcon {
+    font-size: 18px;
+    padding-left: 10px;
+  }
+
+  .headerFlex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding-top: 20px;
+  }
+
+  header p {
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+  }
+
+  nav ul li {
+    margin-top: 5px;
+  }
+
+  .wrapper {
+    width: 95%;
+  }
+
+  .nameRow {
+    width: 14%;
+    font-size: 13px;
+  }
+
+  .dataRow {
+    font-size: 12px;
+  }
+
+  .nutrientName {
+    font-size: 12px;
+  }
+
+  .otherRow {
+    margin: 0 auto;
+  }
+}
+.toolDiv {
+  padding: 50px;
+  background: white;
+  color: black;
+}
+
+.recipes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 15px;
+}
+
+.recipe {
+  width: 18%;
+}
+
+.recipe a {
+  color: black;
 }
 
 .recipeImg {
-  height: 75px;
+  height: 150px;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.formDiv {
+  padding-top: 50px;
+  padding-bottom: 25px;
+}
+
+.formDiv h3 {
+  font-size: 36px;
+  padding-bottom: 30px;
+}
+
+.searchResultsDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: white;
+  padding-top: 15px;
+  padding-bottom: 120px;
+}
+
+.foodName {
+  padding-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.errorHandleForm {
+  padding-bottom: 10px;
+}
+
+.searchResultsDiv h3 {
+  padding: 15px 0;
+  text-decoration: underline;
+}
+
+.formDiv label {
+  padding-right: 20px;
 }
 
 .productImg {
   height: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+.simpleFoodImg {
+  width: 33%;
+}
+
+.nutritionBtn {
+  width: 100%;
+  border-radius: 4%;
+  background: #8c9297;
+  border: none;
+  color: black;
+  font-size: 15px;
+  padding: 3px 0;
+  margin-top: 5px;
+}
+.nutritionBtn:hover {
+  background: green;
+  color: white;
 }
 
 .nutritionLabel {
-  height: 300px;
+  width: 100%;
   grid-column-start: 1;
   grid-column-end: 4;
   margin: 0 auto;
 }
 
+.products {
+  background: #ced4da;
+  border-right: 1px solid black;
+  color: black;
+}
+
+.foodResult {
+  padding: 20px 20px;
+}
+
 .productDisplay {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 25% 10% 10% 5% 10%;
+  grid-template-columns: 33% 33% 34%;
+  grid-template-rows: 25% 5% 5% 5% 5%;
+  border-right: 1px solid black;
+  background: #adb5bd;
+  color: black;
 }
 
 .productDescription {
@@ -330,42 +880,67 @@ nav ul li a:hover {
   grid-column-start: 1;
   grid-column-end: 4;
   margin: 0 auto;
+  background: #8c9297;
+  color: black;
+  border: none;
+}
+.addDiaryBtn:hover {
+  background: green;
+  color: white;
 }
 
 .productDescriptionImg {
   margin: 10px 10px;
 }
 
+.simpleFoods {
+  background: #2f3136;
+}
+
 .simpleFoods, .products, .productDisplay {
-  width: 32%;
-  border-right: 2px solid black;
+  width: 25%;
 }
 
 .nutritionCategory {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  border: 2px solid black;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 85%;
+  margin-left: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .logoIcon {
-    -webkit-animation: App-logo-spin 3 5s linear;
-            animation: App-logo-spin 3 5s linear;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #141414;
+  color: white;
 }
-@-webkit-keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.App {
+  text-align: center;
+  font-family: "Source Sans Pro", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}/*# sourceMappingURL=App.css.map */
+
+.wrapper {
+  max-width: 1200px;
+  width: 85%;
+  margin: 0 auto;
+}
+
+footer {
+  padding: 10px;
+}

@@ -1,0 +1,141 @@
+.tutorial {
+    font-family: $source;
+    padding: 100px 0;
+}
+.tutorial1 {
+    background: white;
+    color: black;
+    position: relative;
+    z-index: 0;
+    padding: 100px 0;
+}
+.tutorial2 {
+    background: grey;
+    color: whitesmoke;
+    font-family: $source;
+    padding: 100px 0;
+}
+.tutorial3 {
+    padding: 100px 0;
+    background: black;
+}
+.tutorial4 {
+    padding: 100px 0;
+    background: rgb(112, 128, 144);
+    color: white;
+}
+.tutorial1div, .tutorial2div, .tutorial3div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.tutorial4div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.tutorial1Text {
+    text-align: left;
+    align-items: center;
+    h2 {
+        position: relative;
+        margin: 10px 0;
+    }
+    h2::after {
+        content: '';
+        position: absolute;
+        background-color: rgb(144, 229, 16);
+        box-shadow: 0 0 6px rgb(144, 229, 120);
+        left: 10px;
+        width: 95%;
+        height: 10px;
+        bottom: 20px;
+        z-index: -1;
+        opacity: 0.5;
+    }
+    p {
+        font-size: 18px;
+    }
+}
+.tutorial2Text {
+    text-align: right;
+    span {
+        left: 0;
+        top: -10px;
+        background: black;
+    }
+}
+.tutorial3Text {
+    text-align: left;
+    span {
+        top: -10px;
+        left: -5px;
+        background: grey;
+        color: black;
+    }
+    h2 {
+        text-align: right;
+    }
+}
+.tutorial4Text {
+    width: 55%;
+    line-height: 32px;
+    h2 {
+        position: relative;
+        padding: 25px 0;
+
+    }
+    span {
+        background: grey;
+        padding: 10px 15px;
+        color: white;
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+    p {
+        padding-bottom: 35px;
+        font-size: 18px;
+    }
+}
+.tutorial2Text, .tutorial3Text, .tutorial4text {
+    align-items: center;
+    position: relative;
+    h2 {
+        position: relative;
+    }
+    span {
+        padding: 10px 15px;
+        position: absolute;
+    }
+    p {
+        font-size: 18px;
+    }
+}
+.tutorial1Text, .tutorial2Text, .tutorial3Text {
+    width: 45%;
+    line-height: 32px;
+    display: flex;
+    flex-direction: column;
+    
+    h2 {
+        padding-bottom: 20px;
+        width: 85%;
+        font-size: 25px;
+    }
+    p {
+        width: 85%;
+    }
+}
+.tutorial1Image, .tutorial2Image, .tutorial3Image {
+    width: 45%;
+    img {
+        width: 100%;
+    }
+}
+.tutorial4Image {
+    width: 70%;
+    img {
+        width: 100%;
+    }
+}

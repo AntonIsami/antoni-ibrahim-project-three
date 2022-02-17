@@ -1,0 +1,102 @@
+
+@media (max-width: 950px){
+  .landingFlex{
+    flex-direction: column;
+  }
+  .landingImg, .landingText {
+    width: 100%;
+  }
+  .productsRow p {
+    display: none;
+  
+  } 
+  .productDisplay {
+    grid-template-columns: 31% 31% 31%;
+    grid-template-rows: 25% 5% 5% 5% 5% 5%;
+  }
+  .addDiaryBtn {
+    margin-left: 20px;
+  }
+  .products p, .simpleFoods p, .nutritionCategory p {
+  font-size: 12px;
+  }
+  .nutritionBtn {
+  font-size: 14px;
+  }
+  
+  .toolDiv {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .recipe {
+    width: 50%;
+  }
+}
+@media (max-width: 750px){
+  .searchResultsDiv{
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .nutritionLabel {
+    width: 50%;
+  }
+
+  .simpleFoods, .products, .productDisplay {
+  width: 100%;  
+  }
+
+   .products p, .simpleFoods p, .nutritionCategory p {
+  font-size: 16px;
+  }
+  .products p, .simpleFoods p, .nutritionCategory p {
+  font-size: 16px;
+  }
+  .addDiaryBtn{
+    margin: 10px auto;
+    padding: 20px 10px;
+  }
+  .diaryTable {
+    font-size: 14px;
+  }
+  .otherRow {
+    width: 10%;
+  }
+}
+@media (max-width: 500px){
+  .recipe {
+    width: 100%;
+  }
+  .deleteIcon {
+    font-size: 18px;
+    padding-left: 10px;
+  }
+  .headerFlex {
+    flex-direction: column;
+    padding-top: 20px;
+  }
+  header p {
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+  }
+  nav ul li {
+    margin-top: 5px;
+  }
+  .wrapper {
+    width: 95%;
+  }
+  .nameRow {
+    width: 14%;
+    font-size: 13px;
+  }
+  .dataRow {
+    font-size: 12px;
+  }
+  .nutrientName {
+    font-size: 12px;
+  }
+  .otherRow {
+    margin: 0 auto;
+  }
+
+}

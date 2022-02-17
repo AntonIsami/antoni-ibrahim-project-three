@@ -1,3 +1,4 @@
+// import style elements
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = () => {
@@ -5,10 +6,10 @@ const Header = () => {
     return (
         <div className="header">
             <header className="wrapper headerFlex">
-                <h1 className="logo">
+                <p className="logo">
                     <FontAwesomeIcon className="logoIcon" aria-label="Click to delete food journal entry" icon="laptop-medical"/>
                     NUTRI CO  
-                </h1>
+                </p>
                 <nav>
                     <ul className="navFlex">
                         <li><a href="#home">HOME</a></li>
