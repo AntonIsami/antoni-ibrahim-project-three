@@ -31,15 +31,11 @@ const SimpleNutritionInfoBox = (props) => {
         
             <div className="productDisplay">
                 <div className="productDescription" key={props.id}>
-                    <h3>Nutritional Info:</h3>
-                    <h4>Nutritional info is per serving</h4>
-                    <br></br>
-                    <h5>{props.name}</h5>
-                    <h5>Nutritional info is per serving</h5>
-                    <h6>(percentage = daily value)</h6>
-                   
+                    <h3>{props.name}</h3>
+                    <h4>Information For One Serving</h4>
+                    
                 </div>
-
+                <div className="nutrientsList nutrientsListA">
                 {
                     props.object.nutrition.nutrients[calPos] === undefined
                         ? null
@@ -113,7 +109,7 @@ const SimpleNutritionInfoBox = (props) => {
                             <p>Fiber:</p> <p>{props.object.nutrition.nutrients[fibPos].amount} g</p>
                         </div>
                 }
-
+                </div>
 
                 <button className="addDiaryBtn" onClick={() => { addItemToDatabase(props) }}>Add 1 Serving to Diary</button>
 

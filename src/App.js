@@ -18,6 +18,12 @@ function App() {
 
   return (
     <div className="App">
+      <div className="modal">
+        <div className="modal-content">
+          {/* <span className="close">&times;</span> */}
+          <p>NutriCo is currently under construction, the search and journal tools are still functional at the bottom of this page</p>
+        </div>
+      </div>  
       <Header />
       <Landing />
       <Homepage />

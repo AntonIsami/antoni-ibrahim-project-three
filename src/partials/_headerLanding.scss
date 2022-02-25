@@ -4,8 +4,9 @@
   flex-direction: row;
   justify-content: space-between; 
   align-items: center;
-  padding-top: 20px;
+  padding-top: 40px;
   padding-bottom: 25px;
+
 }
 
 .navFlex {
@@ -95,4 +96,22 @@ nav ul li a:hover {
   to {
     transform: rotate(360deg);
   }
+}
+.modal {
+  background-color: red;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+}
+.modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20px;
 }

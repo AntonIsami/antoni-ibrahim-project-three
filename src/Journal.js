@@ -111,12 +111,6 @@ const Journal = () => {
 
     return (
        <div className="journalAndSearch">
-        <section className="diarySection" id="journal">
-            <div className="wrapper diaryFlex">
-            <Diary />
-                <button className="resetBtn" onClick={resetDiary}>Reset</button>
-            </div>
-        </section>
 
         <section className="wrapper formFlex" id="search">
             <div className="formDiv">
@@ -150,29 +144,39 @@ const Journal = () => {
                         ? <p className="errorHandle">No results</p>
                         : null
                     }
-
-                    { 
-                        searchResults[5] === undefined
-                        ? <p> please start search</p>
-                        : 
-                        (   <>
-                
-                        {searchResults[5].results.slice(0, 6).map((simpleFood)=>{
-                        return(
-                            <div className="foodResult" onClick={ () => {handleClickSimple(simpleFood.id)}} key={simpleFood.id}>
-                            
-                            <p className='foodName'>{simpleFood.name}</p>
-                            <img className="simpleFoodImg" src={simpleFood.image} alt={simpleFood.name}/>
-                            <button className="nutritionBtn" >View Nutritional Information</button>
-                            </div>
+                    <div className="foodResults">
+                        { 
+                            searchResults[5] === undefined
+                            ? <p> please start search</p>
+                            : 
+                            (   <>
+                    
+                            {searchResults[5].results.slice(0, 6).map((simpleFood)=>{
+                            return(
+                                <div className="foodResult" onClick={ () => {handleClickSimple(simpleFood.id)}} key={simpleFood.id}>
+                                
+                                <p className='foodName'>{simpleFood.name}</p>
+                                <img className="simpleFoodImg" src={simpleFood.image} alt={simpleFood.name}/>
+                                <button className="nutritionBtn" >View Nutritional Information</button>
+                                </div>
+                                )
+                            })
+                            }
+                            </>
                             )
-                        })
                         }
-                        </>
-                        )
-                    }
+                    </div>
+                    
                 </div>
-
+                    {simpleNutritionInfo.nutrition === undefined
+                        ? null
+                        : <SimpleNutritionInfoBox
+                            id={simpleNutritionInfo.id}
+                            object={simpleNutritionInfo}
+                            name={simpleNutritionInfo.name}
+                            image={simpleNutritionInfo.image}
+                        />
+                    }
                 <div className="products">
                     <h3>Products: </h3> 
 
@@ -181,71 +185,70 @@ const Journal = () => {
                     ? <p className="errorHandleProduct">No results</p>
                     : null
                 }
-
-                {searchResults[1] === undefined
-                    ? null
-                    :searchResults[1].results.slice(0, 5).map((product)=>{
-                        return (
-                        <div className="foodResult" id="product" key={product.id}>
-                            <p className='foodName'>{product.name}</p>
-                            <img className="productImg" src={product.image} alt={product.name}/>
-                            <button className="nutritionBtn" onClick={ () => {handleClick(product.id)}}>View Nutritional Information</button>
-                        </div>
-                        )
-                        })  
-                }
-            </div>
+                <div className="foodResults">
+                    {searchResults[1] === undefined
+                        ? null
+                        :searchResults[1].results.slice(0, 5).map((product)=>{
+                            return (
+                            <div className="foodResult" id="product" key={product.id}>
+                                <p className='foodName'>{product.name}</p>
+                                <img className="productImg" src={product.image} alt={product.name}/>
+                                <button className="nutritionBtn" onClick={ () => {handleClick(product.id)}}>View Nutritional Information</button>
+                            </div>
+                            )
+                            })  
+                    }
+                    </div>
+                </div>
                 
-                {nutritionInfo.nutrition === undefined
-                    ? null
-                    : <NutritionInfoBox
-                    id={nutritionInfo.id}
-                    object={nutritionInfo}
-                    title={nutritionInfo.title}
-                    fat={nutritionInfo.nutrition.fat}
-                    carbs={nutritionInfo.nutrition.carbs}
-                    calories={nutritionInfo.nutrition.calories}
-                    protein={nutritionInfo.nutrition.protein}
-                    image={nutritionInfo.images[0]}
-                    label={nutritionLabel}
-                    />
-                }
+                    {nutritionInfo.nutrition === undefined
+                        ? null
+                        : <NutritionInfoBox
+                        id={nutritionInfo.id}
+                        object={nutritionInfo}
+                        title={nutritionInfo.title}
+                        fat={nutritionInfo.nutrition.fat}
+                        carbs={nutritionInfo.nutrition.carbs}
+                        calories={nutritionInfo.nutrition.calories}
+                        protein={nutritionInfo.nutrition.protein}
+                        image={nutritionInfo.images[2]}
+                        label={nutritionLabel}
+                        />
+                    }
 
-                {simpleNutritionInfo.nutrition === undefined
-                    ? null
-                    : <SimpleNutritionInfoBox 
-                    id={simpleNutritionInfo.id}
-                    object={simpleNutritionInfo}
-                    name={simpleNutritionInfo.name}
-                    image={simpleNutritionInfo.image}
-                    />
-                }
-        </div>
+                
+            </div>
             
         
 
-        <div className="toolDiv">
-            <h3>Healthy Recipes With Similar Ingredients: </h3>
-            <div className="recipes">
+            <div className="toolDiv">
+                <h3>Healthy Recipes With Similar Ingredients: </h3>
+                <div className="recipes">
             
-                <p className='errorHandleRecipes'></p>
-                {
-                searchResults[0] === undefined
-                    ? <p> please start search</p>
-                    : searchResults[0].results.slice(0, 5).map((recipe) => {
-                    return (
-                        <div className='recipe' key={recipe.id}>
-                        <p>{recipe.name}</p>
-                        <p><a href={recipe.link}>Recipe Link</a></p>
-                        <img className="recipeImg" src={recipe.image} alt={recipe.name} />
-                        </div>
-                    )
-                    })
+                    <p className='errorHandleRecipes'></p>
+                    {
+                    searchResults[0] === undefined
+                        ? <p> please start search</p>
+                        : searchResults[0].results.slice(0, 5).map((recipe) => {
+                        return (
+                            <div className='recipe' key={recipe.id}>
+                            <p>{recipe.name}</p>
+                            <p><a href={recipe.link}>Recipe Link</a></p>
+                            <img className="recipeImg" src={recipe.image} alt={recipe.name} />
+                            </div>
+                        )
+                        })
 
-                }
+                    }
+                </div>
             </div>
-        </div>
-      </section>
+        </section>
+        <section className="diarySection" id="journal">
+            <div className="wrapper diaryFlex">
+                <Diary />
+                <button className="resetBtn" onClick={resetDiary}>Reset</button>
+            </div>
+        </section>
     </div> 
     )
 }

@@ -302,7 +302,7 @@ h1, h2, h3, h4, h5, h6, p, a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: 20px;
+  padding-top: 40px;
   padding-bottom: 25px;
 }
 
@@ -431,6 +431,41 @@ nav ul li a:hover {
             transform: rotate(360deg);
   }
 }
+.modal {
+  background-color: red;
+  padding: 10px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 99;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+}
+
+.modal-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 20px;
+}
+
 .tutorial {
   font-family: "Source Sans Pro", sans-serif;
   padding: 100px 0;
@@ -789,9 +824,8 @@ nav ul li a:hover {
 }
 
 .searchResultsDiv {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-box-pack: center;
@@ -813,7 +847,7 @@ nav ul li a:hover {
 
 .searchResultsDiv h3 {
   padding: 15px 0;
-  text-decoration: underline;
+  text-transform: capitalize;
 }
 
 .formDiv label {
@@ -846,7 +880,6 @@ nav ul li a:hover {
 }
 
 .nutritionLabel {
-  width: 100%;
   grid-column-start: 1;
   grid-column-end: 4;
   margin: 0 auto;
@@ -860,10 +893,18 @@ nav ul li a:hover {
 
 .foodResult {
   padding: 20px 20px;
+  width: 25%;
+  position: relative;
 }
 
 .productDisplay {
-  display: grid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   grid-template-columns: 33% 33% 34%;
   grid-template-rows: 25% 5% 5% 5% 5%;
   border-right: 1px solid black;
@@ -879,10 +920,11 @@ nav ul li a:hover {
 .addDiaryBtn {
   grid-column-start: 1;
   grid-column-end: 4;
-  margin: 0 auto;
+  margin: 10px auto;
   background: #8c9297;
   color: black;
   border: none;
+  padding: 10px 10px;
 }
 .addDiaryBtn:hover {
   background: green;
@@ -891,14 +933,37 @@ nav ul li a:hover {
 
 .productDescriptionImg {
   margin: 10px 10px;
+  width: 40%;
+  mix-blend-mode: multiply;
 }
 
 .simpleFoods {
   background: #2f3136;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  position: relative;
 }
 
 .simpleFoods, .products, .productDisplay {
-  width: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.simpleFoods > .nutritionCategory {
+  width: 24%;
 }
 
 .nutritionCategory {
@@ -916,8 +981,66 @@ nav ul li a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 85%;
-  margin-left: 10px;
+  width: 18%;
+  margin: 5px 5px;
+  padding: 5px 0;
+}
+
+.nutrientsList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.descriptionAndLabel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 10px;
+}
+
+.labelImage {
+  width: 15%;
+}
+
+.nutritionLabel {
+  width: 100%;
+}
+
+.nutrientsListA > .nutritionCategory {
+  width: 23%;
+}
+
+.nutrientsListA {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.foodResults {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+h6 {
+  font-size: 16px;
 }
 
 html,
