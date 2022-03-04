@@ -272,7 +272,9 @@ h1, h2, h3, h4, h5, h6, p, a {
 .dataRow {
   background: white;
   color: black;
-  padding: 10px 0;
+  padding: 5px 0;
+  overflow: hidden;
+  text-overflow: clip;
 }
 
 .nutrientName {
@@ -1083,10 +1085,18 @@ h6 {
   margin: 0;
   padding: 0;
   position: relative;
-  /*perspective: 20px;*/
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .suggestions li {
+  width: 30%;
   background: white;
   color: black;
   text-align: center;
@@ -1106,6 +1116,13 @@ h6 {
           justify-content: space-between;
   text-transform: capitalize;
   cursor: pointer;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.suggestions li:hover {
+  background: black;
+  color: white;
 }
 
 html,

@@ -37,7 +37,9 @@
 .dataRow {
   background: white;
   color: black;
-  padding: 10px 0;
+  padding: 5px 0;
+  overflow: hidden;
+  text-overflow: clip;
 }
 .nutrientName {
 text-align: center;

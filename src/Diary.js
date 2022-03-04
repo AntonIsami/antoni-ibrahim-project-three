@@ -247,7 +247,7 @@ const Diary = () => {
                             <p className="nameRow">{product[1].name.substring(0, 30)}</p>
                             {product[1].nutrition.nutrients[calPos] === undefined
                                 ? <p className='otherRow dataRow'>0</p>
-                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[calPos].amount * 50}</p>
+                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[calPos].amount}</p>
                             }
                             <p className='otherRow dataRow'>{product[1].nutrition.caloricBreakdown.percentCarbs}%</p>
 
@@ -293,7 +293,7 @@ const Diary = () => {
                         : <div className='row'>
                             <p className="nameRow"></p>
                             <p className='otherRow dataRow'>{caloriesTotal} </p>
-                            <p className='otherRow dataRow'>{carbsTotal} %</p>
+                            <p className='otherRow dataRow'>{carbsTotal.toFixed(2)} %</p>
                             <p className='otherRow dataRow'>{sugarTotal} g</p>
                             <p className='otherRow dataRow'>{fatTotal} g</p>
                             <p className='otherRow dataRow'>{saturatedTotal} g</p>

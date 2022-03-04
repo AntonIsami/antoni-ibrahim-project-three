@@ -187,10 +187,13 @@ text-align: center;
   margin: 0;
   padding: 0;
   position: relative;
-  /*perspective: 20px;*/
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .suggestions li {
+  width: 30%;
   background: white;
   color: black;
   text-align: center;
@@ -204,4 +207,9 @@ text-align: center;
   justify-content: space-between;
   text-transform: capitalize;
   cursor: pointer;
+  justify-content: center;
+  &:hover {
+    background: black;
+    color: white;
+  }
 }
