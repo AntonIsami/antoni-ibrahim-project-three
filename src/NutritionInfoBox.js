@@ -9,7 +9,7 @@ const NutritionInfoBox = (props) => {
 
 
         push(dbRootAddress, productObject.object);
-
+        document.querySelector(".diaryTable").scrollIntoView({ behavior: "smooth"});
     }
     const sugarPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sugar');
     const transPos = props.object.nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Trans Fat');

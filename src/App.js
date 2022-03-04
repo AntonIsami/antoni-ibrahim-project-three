@@ -9,7 +9,7 @@ import { faCoffee, faLaptopMedical, faAngleDown} from '@fortawesome/free-solid-s
 import Header from './Header.js';
 import Landing from './Landing.js';
 import Homepage from './Homepage.js';
-import Journal from './Journal.js';
+import Search from './Search.js';
 
 library.add(faCoffee, faLaptopMedical, faAngleDown)
 
@@ -27,7 +27,7 @@ function App() {
       <Header />
       <Landing />
       <Homepage />
-      <Journal />
+      <Search />
       
       <footer><p>Created at Juno College of Technology &copy; 2022</p></footer>
     </div>

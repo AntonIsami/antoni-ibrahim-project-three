@@ -3,14 +3,21 @@ import NutritionDatabase from './firebase.js';
 import { useState, useEffect } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle, faHeart } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faTimesCircle);
+library.add(faTimesCircle, faHeart);
 
 const Diary = () => {
     
     const [ productList, setProductList] = useState([]);
     const [ simpleList, setSimpleList ] = useState([]);
+    const [ caloriesTotal, setCaloriesTotal ] = useState(0);
+    const [ carbsTotal, setCarbsTotal ] = useState(0);
+    const [ sugarTotal, setSugarTotal ] = useState(0);
+    const [ fatTotal, setFatTotal ] = useState(0);
+    const [ saturatedTotal, setSaturatedTotal ] = useState(0);
+    const [ sodiumTotal, setSodiumTotal ] = useState(0);
+    const [ proteinTotal, setProteinTotal ] = useState(0);
     const database = getDatabase(NutritionDatabase);
     
     useEffect( ()=>{
@@ -19,7 +26,8 @@ const Diary = () => {
         if(response.val() === null){
             setProductList([])
         } else{
-        setProductList(Object.entries(response.val()))
+        setProductList(Object.entries(response.val()));
+        
         }
         },[])
     },[database])
@@ -44,7 +52,112 @@ const Diary = () => {
         const dbRef = ref(database, `simpleFoods/${key[0]}`);
         remove(dbRef);
     }
- 
+    
+   
+
+    useEffect(()=> {
+
+        let calArray = [];
+        let carbsArray = [];
+        let sugarArray = [];
+        let fatArray = [];
+        let satArray = [];
+        let sodArray = [];
+        let proArray = [];
+
+        productList.forEach((product) => {
+            const calPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Calories');
+            const fatPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Fat');
+            const sugarPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sugar');
+            const satPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Saturated Fat');
+            const sodPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sodium');
+            const proPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Protein');
+
+
+            calArray.push(product[1].nutrition.nutrients[calPos].amount);
+
+            carbsArray.push(product[1].nutrition.caloricBreakdown.percentCarbs);
+
+            sugarArray.push(product[1].nutrition.nutrients[sugarPos].amount);
+
+            fatArray.push(product[1].nutrition.nutrients[fatPos].amount)
+
+            satArray.push(product[1].nutrition.nutrients[satPos].amount);
+
+            sodArray.push(product[1].nutrition.nutrients[sodPos].amount / 1000);
+            console.log(sodArray);
+            proArray.push(product[1].nutrition.nutrients[proPos].amount);
+
+
+        })
+
+        simpleList.forEach((product) => {
+            const calPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Calories');
+            const fatPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Fat');
+            const sugarPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sugar');
+            const satPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Saturated Fat');
+            const sodPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sodium');
+            const proPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Protein');
+
+
+            calArray.push(product[1].nutrition.nutrients[calPos].amount * 50);
+
+            carbsArray.push(product[1].nutrition.caloricBreakdown.percentCarbs);
+
+            sugarArray.push(product[1].nutrition.nutrients[sugarPos].amount);
+
+            fatArray.push(product[1].nutrition.nutrients[fatPos].amount)
+
+            satArray.push(product[1].nutrition.nutrients[satPos].amount);
+
+            sodArray.push(product[1].nutrition.nutrients[sodPos].amount * 1);
+            console.log(sodArray)
+            proArray.push(product[1].nutrition.nutrients[proPos].amount);
+            
+        })
+
+
+        const totalCal = calArray.reduce((totalValue, currentValue) => {
+            return totalValue + currentValue;
+        }, 0);
+        setCaloriesTotal(totalCal);
+
+        const totalCarbs = carbsArray.reduce((totalValue, currentValue) => {
+            return totalValue + currentValue;
+        }, 0);
+        setCarbsTotal(totalCarbs);
+
+        const totalSug = sugarArray.reduce((totalValue, currentValue) => {
+            return totalValue + currentValue;
+        }, 0);
+        setSugarTotal(totalSug);
+
+        const totalFat = fatArray.reduce((totalValue, currentValue) => {
+            return totalValue + currentValue;
+        }, 0);
+        setFatTotal(totalFat);
+
+        const totalSat = satArray.reduce((totalValue, currentValue) => {
+            return totalValue + currentValue;
+        }, 0);
+        setSaturatedTotal(totalSat);
+
+        const totalSod = sodArray.reduce((totalValue, currentValue) => {
+            return totalValue + currentValue;
+        }, 0);
+        setSodiumTotal(totalSod);
+
+        const totalPro = proArray.reduce((totalValue, currentValue) => {
+            return totalValue + currentValue;
+        }, 0);
+        setProteinTotal(totalPro);
+    }, [productList, simpleList])
+   
+
+    
+
+    
+
     return (
     <div className='diaryTable'>
        <div className="row nutrientRow">
@@ -68,7 +181,6 @@ const Diary = () => {
         }
         {
                 productList.map((product, index, id) => {
-                    
                     const calPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Calories');
                     const fatPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Fat');
                     const sugarPos = product[1].nutrition.nutrients.map(function (e) { return e.name; }).indexOf('Sugar');
@@ -101,7 +213,7 @@ const Diary = () => {
                             }
                             {product[1].nutrition.nutrients[sodPos] === undefined
                                 ? <p className='otherRow dataRow'>0</p>
-                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[sodPos].amount} g</p>
+                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[sodPos].amount / 1000} g</p>
                             }
                             {product[1].nutrition.nutrients[proPos] === undefined
                                 ? <p className='otherRow dataRow'>0</p>
@@ -112,6 +224,7 @@ const Diary = () => {
                     )
                 })
         }
+            
             {
             simpleList.length === 0
             ? null
@@ -134,7 +247,7 @@ const Diary = () => {
                             <p className="nameRow">{product[1].name.substring(0, 30)}</p>
                             {product[1].nutrition.nutrients[calPos] === undefined
                                 ? <p className='otherRow dataRow'>0</p>
-                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[calPos].amount}</p>
+                                : <p className='otherRow dataRow'>{product[1].nutrition.nutrients[calPos].amount * 50}</p>
                             }
                             <p className='otherRow dataRow'>{product[1].nutrition.caloricBreakdown.percentCarbs}%</p>
 
@@ -166,6 +279,37 @@ const Diary = () => {
                     )
                 })
             }
+            <div className="totalRow">
+                {
+                    productList.length === 0
+                        ? null
+                        : <div className="row productsRow">
+                            <p> Totals</p>
+                        </div>
+                }
+                {
+                    productList.length === 0
+                        ? null
+                        : <div className='row'>
+                            <p className="nameRow"></p>
+                            <p className='otherRow dataRow'>{caloriesTotal} </p>
+                            <p className='otherRow dataRow'>{carbsTotal} %</p>
+                            <p className='otherRow dataRow'>{sugarTotal} g</p>
+                            <p className='otherRow dataRow'>{fatTotal} g</p>
+                            <p className='otherRow dataRow'>{saturatedTotal} g</p>
+                            <p className='otherRow dataRow'>{sodiumTotal} g</p>
+                            <p className='otherRow dataRow'>{proteinTotal} g</p>
+                            <FontAwesomeIcon icon={faHeart} />
+                        </div>
+
+
+
+
+
+                }
+
+
+            </div>
     </div>
     )
 }

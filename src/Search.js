@@ -11,7 +11,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { getDatabase, ref, remove } from 'firebase/database';
 
-const Journal = () => {
+const Search = () => {
 
     const apiKey = "5306a0f7f32242acaec3f5e05a575696";
     //bench API
@@ -221,7 +221,7 @@ const Journal = () => {
             
         
 
-            <div className="toolDiv">
+            {/* <div className="toolDiv">
                 <h3>Healthy Recipes With Similar Ingredients: </h3>
                 <div className="recipes">
             
@@ -241,7 +241,7 @@ const Journal = () => {
 
                     }
                 </div>
-            </div>
+            </div> */}
         </section>
         <section className="diarySection" id="journal">
             <div className="wrapper diaryFlex">
@@ -252,4 +252,4 @@ const Journal = () => {
     </div> 
     )
 }
-export default Journal;
+export default Search;
