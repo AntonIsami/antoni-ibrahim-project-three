@@ -56,3 +56,15 @@ margin: 5px auto;
 .fa-heart {
   padding-top: 20px;
 }
+.resetBtn {
+  width: 100%;
+  background: black;
+  color: white;
+  border: none;
+  padding: 20px 0;
+  font-size: 25px;
+  &:hover {
+    background: grey;
+    color: black;
+  }
+}

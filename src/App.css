@@ -288,6 +288,27 @@ h1, h2, h3, h4, h5, h6, p, a {
   color: red;
 }
 
+.totalRow {
+  border-top: 2px solid black;
+}
+
+.fa-heart {
+  padding-top: 20px;
+}
+
+.resetBtn {
+  width: 100%;
+  background: black;
+  color: white;
+  border: none;
+  padding: 20px 0;
+  font-size: 25px;
+}
+.resetBtn:hover {
+  background: grey;
+  color: black;
+}
+
 .headerFlex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -843,6 +864,9 @@ nav ul li a:hover {
 
 .errorHandleForm {
   padding-bottom: 10px;
+  font-size: 18px;
+  text-transform: capitalize;
+  color: #BADA51;
 }
 
 .searchResultsDiv h3 {
@@ -852,6 +876,7 @@ nav ul li a:hover {
 
 .formDiv label {
   padding-right: 20px;
+  font-size: 18px;
 }
 
 .productImg {
@@ -1041,6 +1066,46 @@ nav ul li a:hover {
 
 h6 {
   font-size: 16px;
+}
+
+.searchInput {
+  display: block;
+  width: 70%;
+  margin: 10px auto;
+  background: grey;
+  border: none;
+  padding: 15px 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+.suggestions {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  /*perspective: 20px;*/
+}
+
+.suggestions li {
+  background: white;
+  color: black;
+  text-align: center;
+  list-style: none;
+  border-bottom: 1px solid #D8D8D8;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+  margin: 0;
+  padding: 20px;
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-transform: capitalize;
+  cursor: pointer;
 }
 
 html,

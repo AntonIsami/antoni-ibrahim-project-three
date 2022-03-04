@@ -18,6 +18,7 @@ const Search = () => {
     // const apiKey = "72e6c8349f5542e981ba7aaa8eb67e16";
     const [userInput, setUserInput] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
+    const [ suggestions, setSuggestions ] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
     const [nutritionLabel, setNutritionLabel] = useState("");
     const [nutritionInfo, setNutritionInfo] = useState("");
@@ -40,8 +41,86 @@ const Search = () => {
         })
     }, [searchTerm]);
 
+    useEffect(() => {
+        let suggestionsArray = []
+        if(userInput.length > 2) {
+            axios({
+                url: ' https://api.spoonacular.com/food/ingredients/autocomplete',
+                method: 'GET',
+                dataResponse: 'json',
+                params: {
+                    apiKey: apiKey,
+                    query: userInput,
+                    metaInformation: true,
+                }
+            }).then((response) => {
+                response.data.forEach((object) => {
+                    suggestionsArray.push(object)
+                })
 
+            }).then((response) => {
+            setSuggestions(suggestionsArray)
+            })
 
+            axios({
+                url: 'https://api.spoonacular.com/food/products/suggest',
+                method: 'GET',
+                dataResponse: 'json',
+                params: {
+                    apiKey: apiKey,
+                    query: userInput,
+                }
+            }).then((response) => {
+                response.data.results.forEach((object) => {
+                    suggestionsArray.push(object)
+                })
+            }).then((response) => {
+                setSuggestions(suggestionsArray)
+            })
+            
+        }
+    }, [userInput])
+
+    // const searchByInput = () => {
+    //     let suggestionsArray = []
+    //     if(userInput.length >= 2) {
+    //     axios({
+    //         url: ' https://api.spoonacular.com/food/ingredients/autocomplete',
+    //         method: 'GET',
+    //         dataResponse: 'json',
+    //         params: {
+    //             apiKey: apiKey,
+    //             query: userInput,
+    //             metaInformation: true,
+    //         }
+    //     }).then((response) => {
+    //         response.data.forEach((object) => {
+    //             suggestionsArray.push(object)
+    //         })
+            
+    //     })
+
+    //     axios({
+    //         url: 'https://api.spoonacular.com/food/products/suggest',
+    //         method: 'GET',
+    //         dataResponse: 'json',
+    //         params: {
+    //             apiKey: apiKey,
+    //             query: userInput,
+    //         }
+    //     }).then((response) => {
+    //         response.data.results.forEach((object) => {
+    //             suggestionsArray.push(object)
+    //         })
+           
+    //     })
+    //     setSuggestions(suggestionsArray);
+
+    //     } else {
+    //         return
+    //     }
+    // }
+ 
 
 
     const handleSubmit = (event) => {
@@ -63,9 +142,11 @@ const Search = () => {
     }
 
     const handleInput = (event) => {
+        suggestions.length = 0;
         console.log(event.target.value);
         setUserInput(event.target.value);
-
+        // searchByInput();
+        
     }
 
     const handleClick = (id) => {
@@ -88,6 +169,7 @@ const Search = () => {
         })
     }
 
+    
     const getNutritionInfo = (id) => {
         axios({
             url: `https://api.spoonacular.com/food/products/${id}`,
@@ -107,6 +189,15 @@ const Search = () => {
         remove(dbRef1);
         const dbRef2 = ref(database, `simpleFoods`)
         remove(dbRef2);
+    }
+
+    const getNutritionInfoFromSearch = (object) => {
+        if (Object.keys(object).length >= 5) {
+            handleClickSimple(object.id);
+        }
+        if (Object.keys(object).length <= 2){
+            handleClick(object.id);
+        }
     }
 
     return (
@@ -129,8 +220,26 @@ const Search = () => {
                     
                     
                     <label htmlFor="search">Product &amp; Recipe Search</label>
-                    <input type="text" id="search" onChange={ handleInput } value={userInput} ></input>
-                
+                    <input className="searchInput" type="text" id="search" onChange={ handleInput } value={userInput} ></input>
+                    <ul className="suggestions">
+                        <li>Click a product or ingredient</li>
+                        {
+                            suggestions.map((suggestion)=>{
+                                
+                                return (
+                                    
+                                        <li className="searchSuggestions" onClick={ ()=>{getNutritionInfoFromSearch(suggestion)}} key={suggestion.id}>
+                                        
+                                           
+                                            {suggestion.title}
+                                            {suggestion.name}
+                                        
+                                        </li>
+                                )
+                                
+                            })
+                        }
+                    </ul>
                     
                 </form>
             </div>
